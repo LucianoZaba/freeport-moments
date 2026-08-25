@@ -1,0 +1,426 @@
+2026-08-12 05:28:29 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 05:28:29 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 05:28:30 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 05:28:30 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 05:28:31 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/ ...
+2026-08-12 05:28:41 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 05:35:52 | WARNING  | freeport | Intento de login fallido #1 desde 192.168.1.36
+2026-08-12 15:38:54 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 15:38:54 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 15:38:55 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 15:38:55 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 15:38:55 | INFO     | freeport | Limpieza: eliminado temporal huerfano .gitkeep
+2026-08-12 15:38:56 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/ ...
+2026-08-12 15:39:00 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 15:48:36 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 15:48:36 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_154836.db
+2026-08-12 15:48:36 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 15:49:46 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 15:49:46 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 15:49:46 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 15:49:46 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 15:49:46 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 15:49:48 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/ ...
+2026-08-12 15:49:52 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 15:49:53 | INFO     | freeport | ======================================================================
+2026-08-12 15:49:53 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://fell-empty-thesis-copies.trycloudflare.com
+2026-08-12 15:49:53 | INFO     | freeport | ======================================================================
+2026-08-12 15:52:38 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 15:52:38 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_155238.db
+2026-08-12 15:52:38 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 15:56:27 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 15:56:27 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 15:56:27 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 15:56:27 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 15:56:27 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 15:56:29 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/ ...
+2026-08-12 15:56:33 | INFO     | freeport | ======================================================================
+2026-08-12 15:56:33 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://sanyo-river-sympathy-hands.trycloudflare.com
+2026-08-12 15:56:33 | INFO     | freeport | ======================================================================
+2026-08-12 15:56:33 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 15:56:51 | INFO     | freeport | ======================================================================
+2026-08-12 15:56:51 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://sanyo-river-sympathy-hands.trycloudflare.com
+2026-08-12 15:56:51 | INFO     | freeport | ======================================================================
+2026-08-12 15:57:30 | INFO     | freeport | ======================================================================
+2026-08-12 15:57:30 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://sanyo-river-sympathy-hands.trycloudflare.com
+2026-08-12 15:57:30 | INFO     | freeport | ======================================================================
+2026-08-12 15:57:31 | INFO     | freeport | ======================================================================
+2026-08-12 15:57:31 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://sanyo-river-sympathy-hands.trycloudflare.com
+2026-08-12 15:57:31 | INFO     | freeport | ======================================================================
+2026-08-12 15:58:59 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 15:58:59 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_155859.db
+2026-08-12 15:58:59 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:01:27 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:01:27 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:01:27 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:01:27 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:01:27 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 16:01:29 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/ ...
+2026-08-12 16:01:32 | INFO     | freeport | ======================================================================
+2026-08-12 16:01:32 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://rebound-vbulletin-guests-technologies.trycloudflare.com
+2026-08-12 16:01:32 | INFO     | freeport | ======================================================================
+2026-08-12 16:01:36 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 16:01:36 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_160136.db
+2026-08-12 16:01:36 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:04:18 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:04:18 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:04:18 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:04:18 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:04:18 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 16:04:20 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-12 16:04:23 | INFO     | freeport | ======================================================================
+2026-08-12 16:04:23 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://relates-comment-insertion-conclusion.trycloudflare.com
+2026-08-12 16:04:23 | INFO     | freeport | ======================================================================
+2026-08-12 16:04:40 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 16:04:40 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_160440.db
+2026-08-12 16:04:40 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:04:51 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:04:51 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:04:51 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:04:51 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:04:51 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 16:04:52 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-12 16:04:56 | INFO     | freeport | ======================================================================
+2026-08-12 16:04:56 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://jeremy-inclusive-enough-explains.trycloudflare.com
+2026-08-12 16:04:56 | INFO     | freeport | ======================================================================
+2026-08-12 16:04:57 | WARNING  | freeport | Intento de login fallido #1 desde 127.0.0.1
+2026-08-12 16:05:01 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 16:06:24 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 16:06:24 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_160624.db
+2026-08-12 16:06:24 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:08:13 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:08:13 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:08:14 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:08:14 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:08:14 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 16:08:15 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-12 16:08:20 | INFO     | freeport | ======================================================================
+2026-08-12 16:08:20 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://life-mortality-drums-gps.trycloudflare.com
+2026-08-12 16:08:20 | INFO     | freeport | ======================================================================
+2026-08-12 16:09:19 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 16:09:19 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_160919.db
+2026-08-12 16:09:19 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:13:26 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:13:26 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:13:26 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:13:26 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:13:26 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 16:13:27 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-12 16:13:30 | INFO     | freeport | ======================================================================
+2026-08-12 16:13:30 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://browser-petite-sense-manner.trycloudflare.com
+2026-08-12 16:13:30 | INFO     | freeport | ======================================================================
+2026-08-12 16:13:34 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 16:15:41 | INFO     | freeport | Evento reiniciado: base de datos y archivos fisicos eliminados.
+2026-08-12 16:15:53 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 16:17:27 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 16:17:27 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_161727.db
+2026-08-12 16:17:27 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:25:02 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:25:02 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:25:02 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:25:02 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:25:02 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 16:25:03 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-12 16:25:08 | INFO     | freeport | ======================================================================
+2026-08-12 16:25:08 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://predicted-monte-payroll-blvd.trycloudflare.com
+2026-08-12 16:25:08 | INFO     | freeport | ======================================================================
+2026-08-12 16:27:41 | INFO     | freeport | Evento reiniciado: base de datos y archivos fisicos eliminados.
+2026-08-12 16:27:42 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 16:36:05 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 16:36:05 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_163605.db
+2026-08-12 16:36:05 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:36:24 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:36:25 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:36:25 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:36:25 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:36:25 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 16:36:26 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-12 16:36:29 | INFO     | freeport | ======================================================================
+2026-08-12 16:36:29 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://thrown-mouth-refined-couple.trycloudflare.com
+2026-08-12 16:36:29 | INFO     | freeport | ======================================================================
+2026-08-12 16:36:57 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 16:36:57 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_163657.db
+2026-08-12 16:36:57 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:37:21 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:37:21 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:37:21 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:37:21 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:37:21 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 16:37:22 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-12 16:37:28 | INFO     | freeport | ======================================================================
+2026-08-12 16:37:28 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://shed-show-shakira-inn.trycloudflare.com
+2026-08-12 16:37:28 | INFO     | freeport | ======================================================================
+2026-08-12 16:37:47 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 16:37:47 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_163747.db
+2026-08-12 16:37:47 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:40:43 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:40:43 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:40:43 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:40:43 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:40:43 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 16:40:44 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-12 16:40:49 | INFO     | freeport | ======================================================================
+2026-08-12 16:40:49 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://brighton-piano-kissing-cleveland.trycloudflare.com
+2026-08-12 16:40:49 | INFO     | freeport | ======================================================================
+2026-08-12 16:40:54 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 16:41:06 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 16:41:06 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_164106.db
+2026-08-12 16:41:06 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:41:51 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:41:51 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:41:51 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:41:51 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:41:51 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 16:41:52 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-12 16:41:55 | INFO     | freeport | ======================================================================
+2026-08-12 16:41:55 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://exploring-recommend-original-pieces.trycloudflare.com
+2026-08-12 16:41:55 | INFO     | freeport | ======================================================================
+2026-08-12 16:41:55 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 16:42:05 | WARNING  | freeport | Intento de login fallido #1 desde 127.0.0.1
+2026-08-12 16:42:07 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 16:42:17 | INFO     | freeport | Evento reiniciado: base de datos y archivos fisicos eliminados.
+2026-08-12 16:42:19 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 16:42:45 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 16:42:45 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_164245.db
+2026-08-12 16:42:45 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:50:45 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:50:45 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:50:45 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:50:45 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:50:45 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 16:50:47 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-12 16:50:50 | INFO     | freeport | ======================================================================
+2026-08-12 16:50:50 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://pairs-labor-read-neither.trycloudflare.com
+2026-08-12 16:50:50 | INFO     | freeport | ======================================================================
+2026-08-12 16:51:07 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 16:51:07 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_165107.db
+2026-08-12 16:51:07 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:52:40 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:52:40 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:52:40 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:52:40 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:52:40 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 16:52:41 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-12 16:52:44 | INFO     | freeport | ======================================================================
+2026-08-12 16:52:44 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://bread-shame-colleges-motorcycle.trycloudflare.com
+2026-08-12 16:52:44 | INFO     | freeport | ======================================================================
+2026-08-12 16:52:50 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 16:52:56 | INFO     | freeport | Evento reiniciado: base de datos y archivos fisicos eliminados.
+2026-08-12 16:52:58 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-12 16:53:15 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-12 16:53:15 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_165315.db
+2026-08-12 16:53:15 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-12 16:56:10 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-12 16:56:10 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:56:10 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-12 16:56:10 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-12 16:56:12 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-12 16:56:14 | INFO     | freeport | ======================================================================
+2026-08-12 16:56:39 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://unique-arg-classified-measures.trycloudflare.com
+2026-08-12 16:56:39 | INFO     | freeport | ======================================================================
+2026-08-12 16:56:39 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-12 17:26:39 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_172639.db
+2026-08-12 17:56:39 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_175639.db
+2026-08-12 18:26:39 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_182639.db
+2026-08-12 18:56:39 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_185639.db
+2026-08-12 19:26:39 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_192639.db
+2026-08-12 19:56:39 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_195639.db
+2026-08-12 20:26:39 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_202639.db
+2026-08-12 20:56:39 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_205639.db
+2026-08-12 21:26:39 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_212639.db
+2026-08-12 21:56:39 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260812_215639.db
+2026-08-13 01:54:24 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260813_015424.db
+2026-08-13 01:55:26 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-13 01:55:26 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-13 01:55:26 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-13 01:55:26 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Usuario\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-13 01:55:26 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-13 01:55:28 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-13 01:55:33 | INFO     | freeport | ======================================================================
+2026-08-13 01:55:33 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://opinions-anatomy-partial-person.trycloudflare.com
+2026-08-13 01:55:33 | INFO     | freeport | ======================================================================
+2026-08-13 01:56:15 | INFO     | freeport | Evento reiniciado: base de datos y archivos fisicos eliminados.
+2026-08-13 01:56:18 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-24 19:28:36 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 19:28:36 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 19:28:36 | WARNING  | freeport | cloudflared no esta instalado o no esta en el PATH. Instalalo desde https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/ para poder generar un link publico sin abrir puertos en el router. Mientras tanto la app solo sera accesible dentro de la misma red WiFi.
+2026-08-24 19:28:36 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 19:28:36 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 19:28:36 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-24 19:28:36 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260824_192836.db
+2026-08-24 19:28:36 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-24 19:28:36 | INFO     | freeport | Servidor detenido por el usuario.
+2026-08-24 19:31:07 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 19:31:07 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 19:31:07 | WARNING  | freeport | cloudflared no esta instalado o no esta en el PATH. Instalalo desde https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/ para poder generar un link publico sin abrir puertos en el router. Mientras tanto la app solo sera accesible dentro de la misma red WiFi.
+2026-08-24 19:31:07 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 19:31:07 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 19:31:09 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 19:31:17 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-24 19:33:02 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-24 19:33:02 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260824_193302.db
+2026-08-24 19:33:02 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-24 19:33:36 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 19:33:36 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 19:33:37 | WARNING  | freeport | cloudflared no esta instalado o no esta en el PATH. Instalalo desde https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/ para poder generar un link publico sin abrir puertos en el router. Mientras tanto la app solo sera accesible dentro de la misma red WiFi.
+2026-08-24 19:33:37 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 19:33:37 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 19:33:38 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 19:35:31 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-24 19:35:31 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260824_193531.db
+2026-08-24 19:35:31 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-24 19:43:24 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 19:43:24 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 19:43:24 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 19:43:24 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 19:43:25 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-24 19:43:25 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 19:43:30 | INFO     | freeport | ======================================================================
+2026-08-24 19:43:30 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://monitored-trunk-allen-solo.trycloudflare.com
+2026-08-24 19:43:30 | INFO     | freeport | ======================================================================
+2026-08-24 19:43:48 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-24 19:44:08 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-24 19:44:08 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260824_194408.db
+2026-08-24 19:44:08 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-24 19:44:17 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 19:44:17 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 19:44:17 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-24 19:44:17 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 19:44:17 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 19:44:19 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 19:44:21 | INFO     | freeport | ======================================================================
+2026-08-24 19:44:21 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://carmen-implementation-reynolds-warranties.trycloudflare.com
+2026-08-24 19:44:21 | INFO     | freeport | ======================================================================
+2026-08-24 19:48:40 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-24 19:48:40 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260824_194840.db
+2026-08-24 19:48:40 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-24 19:53:31 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 19:53:31 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 19:53:31 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-24 19:53:31 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 19:53:31 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 19:53:33 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 19:53:35 | INFO     | freeport | ======================================================================
+2026-08-24 19:53:35 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://richards-tonight-historic-during.trycloudflare.com
+2026-08-24 19:53:35 | INFO     | freeport | ======================================================================
+2026-08-24 20:14:49 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 20:14:49 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:14:49 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-24 20:14:49 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:14:49 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 20:14:50 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 20:14:53 | INFO     | freeport | ======================================================================
+2026-08-24 20:14:53 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://warranties-couple-collaborative-isp.trycloudflare.com
+2026-08-24 20:14:53 | INFO     | freeport | ======================================================================
+2026-08-24 20:16:19 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-24 20:16:19 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260824_201619.db
+2026-08-24 20:16:19 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-24 20:16:32 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 20:16:32 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:16:32 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-24 20:16:32 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:16:32 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 20:16:33 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 20:16:35 | INFO     | freeport | ======================================================================
+2026-08-24 20:16:35 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://settings-wives-gore-objects.trycloudflare.com
+2026-08-24 20:16:35 | INFO     | freeport | ======================================================================
+2026-08-24 20:16:40 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-24 20:16:40 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260824_201640.db
+2026-08-24 20:16:40 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-24 20:18:23 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 20:18:23 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:18:23 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-24 20:18:23 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:18:23 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 20:18:24 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 20:18:27 | INFO     | freeport | ======================================================================
+2026-08-24 20:18:27 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://replaced-ebooks-endless-largest.trycloudflare.com
+2026-08-24 20:18:27 | INFO     | freeport | ======================================================================
+2026-08-24 20:22:25 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-24 20:22:25 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260824_202225.db
+2026-08-24 20:22:25 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-24 20:23:07 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 20:23:07 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:23:07 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-24 20:23:07 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:23:07 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 20:23:09 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 20:23:10 | INFO     | freeport | ======================================================================
+2026-08-24 20:23:10 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://denver-enable-shows-spot.trycloudflare.com
+2026-08-24 20:23:10 | INFO     | freeport | ======================================================================
+2026-08-24 20:23:13 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-24 20:23:28 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-24 20:23:28 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260824_202328.db
+2026-08-24 20:23:28 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-24 20:23:56 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 20:23:56 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:23:56 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-24 20:23:56 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:23:56 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 20:23:57 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 20:23:59 | INFO     | freeport | ======================================================================
+2026-08-24 20:23:59 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://sunrise-philip-receipt-curve.trycloudflare.com
+2026-08-24 20:23:59 | INFO     | freeport | ======================================================================
+2026-08-24 20:24:50 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-24 20:24:50 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260824_202450.db
+2026-08-24 20:24:50 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-24 20:24:54 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 20:24:54 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:24:54 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-24 20:24:54 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:24:54 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 20:24:55 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 20:24:58 | INFO     | freeport | ======================================================================
+2026-08-24 20:24:58 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://examines-rain-census-burn.trycloudflare.com
+2026-08-24 20:24:58 | INFO     | freeport | ======================================================================
+2026-08-24 20:35:48 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 20:35:48 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:35:48 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-24 20:35:48 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:35:48 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 20:35:49 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 20:35:52 | INFO     | freeport | ======================================================================
+2026-08-24 20:35:52 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://cigarette-models-reviews-planets.trycloudflare.com
+2026-08-24 20:35:52 | INFO     | freeport | ======================================================================
+2026-08-24 20:36:38 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-24 20:36:38 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260824_203638.db
+2026-08-24 20:36:38 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-24 20:40:12 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-24 20:40:12 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:40:12 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-24 20:40:12 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-24 20:40:12 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-24 20:40:13 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-24 20:40:15 | INFO     | freeport | ======================================================================
+2026-08-24 20:40:15 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://occupation-recruiting-guru-affair.trycloudflare.com
+2026-08-24 20:40:15 | INFO     | freeport | ======================================================================
+2026-08-25 01:18:09 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260825_011808.db
+2026-08-25 01:18:38 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-25 01:18:38 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260825_011838.db
+2026-08-25 01:18:38 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-25 01:52:29 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-25 01:52:29 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-25 01:52:29 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-25 01:52:29 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-25 01:52:29 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-25 01:52:31 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-25 01:52:34 | INFO     | freeport | ======================================================================
+2026-08-25 01:52:34 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://attachment-bookmark-administrator-connectors.trycloudflare.com
+2026-08-25 01:52:34 | INFO     | freeport | ======================================================================
+2026-08-25 01:56:30 | INFO     | freeport | Limpieza: eliminado temporal huerfano 1787612128196-qw4ruso1v.tmp
+2026-08-25 02:01:36 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-25 02:01:36 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260825_020136.db
+2026-08-25 02:01:36 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!
+2026-08-25 02:11:56 | WARNING  | freeport | Estas usando el usuario/contraseña de administrador por defecto. Se recomienda definir ADMIN_USUARIO y ADMIN_PASSWORD en un archivo .env antes del evento.
+2026-08-25 02:11:56 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-25 02:11:56 | INFO     | freeport | Iniciando tunel de Cloudflare, esto puede tardar unos segundos...
+2026-08-25 02:11:56 | INFO     | freeport | Base de datos inicializada correctamente en C:\Users\Hp 360\Desktop\Lucho\AREA_DE_TRABAJO\Python\Freeport_Moments-project\prueba\freeport-moments\data\freeport.db
+2026-08-25 02:11:56 | INFO     | freeport | Freeport Moments iniciando...
+2026-08-25 02:11:57 | INFO     | freeport | Abriendo el navegador en http://localhost:8000/admin ...
+2026-08-25 02:12:00 | INFO     | freeport | ======================================================================
+2026-08-25 02:12:00 | INFO     | freeport | LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: https://tooth-balance-watch-biotechnology.trycloudflare.com
+2026-08-25 02:12:00 | INFO     | freeport | ======================================================================
+2026-08-25 02:12:49 | INFO     | freeport | Login exitoso de administrador desde 127.0.0.1
+2026-08-25 02:13:00 | INFO     | freeport | Freeport Moments deteniendose, cancelando tareas de fondo...
+2026-08-25 02:13:00 | INFO     | freeport | Respaldo de base de datos creado: freeport_20260825_021300.db
+2026-08-25 02:13:00 | INFO     | freeport | Servidor detenido correctamente. ¡Hasta luego!

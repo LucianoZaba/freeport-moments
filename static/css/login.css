@@ -1,0 +1,312 @@
+/* =================================================================== */
+/* FREEPORT MOMENTS - LOGIN CSS */
+/* Diseño: Discord / Spotify - Oscuro con azul eléctrico */
+/* Mobile First */
+/* =================================================================== */
+
+/* ========================================================= */
+/* VARIABLES */
+/* ========================================================= */
+:root {
+    --azul: #2B7FFF;
+    --azul-hover: #1F6FE0;
+    --azul-glow: rgba(43, 127, 255, 0.35);
+    --fondo: #080F1E;
+    --card: #121A2B;
+    --card-borde: rgba(255, 255, 255, 0.08);
+    --texto: #FFFFFF;
+    --texto-sec: #8B9BB4;
+    --texto-ter: #5A6C8D;
+    --rojo: #FF4D4D;
+    --radio-sm: 10px;
+    --radio-md: 16px;
+    --radio-lg: 20px;
+    --radio-xl: 24px;
+}
+
+/* ========================================================= */
+/* RESET */
+/* ========================================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ========================================================= */
+/* FONDO - EDITABLE */
+/* ========================================================= */
+/* Cambia la imagen en:../../assets/background.jpg */
+.login-fondo {
+    position: fixed;
+    inset: 0;
+    background-image: url('../../assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(24px) brightness(0.35);
+    transform: scale(1.1);
+    z-index: -2;
+}
+
+.login-fondo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top, rgba(43,127,255,0.2), transparent 60%),
+                linear-gradient(180deg, rgba(8,15,30,0.3), rgba(8,15,30,0.9));
+}
+
+/* ========================================================= */
+/* CONTENEDOR */
+/* ========================================================= */
+.login-wrapper {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ========================================================= */
+/* CARD */
+/* ========================================================= */
+.login-card {
+    background: rgba(18, 26, 43, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--card-borde);
+    border-radius: var(--radio-xl);
+    padding: 32px 28px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* ========================================================= */
+/* LOGO - EDITABLE */
+/* ========================================================= */
+/* Cambia el logo en:../../assets/logo.png */
+.login-logo-area {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.login-logo {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px var(--azul-glow));
+}
+
+/* ========================================================= */
+/* HEADER */
+/* ========================================================= */
+.login-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.login-titulo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+}
+
+.login-subtitulo {
+    font-size: 13px;
+    color: var(--texto-sec);
+    line-height: 1.4;
+}
+
+/* ========================================================= */
+/* FORMULARIO */
+/* ========================================================= */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.login-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.login-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto-sec);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.login-input {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radio-sm);
+    padding: 12px 14px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.login-input:focus {
+    border-color: var(--azul);
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 0 0 3px rgba(43,127,255,0.15);
+}
+
+.login-input::placeholder {
+    color: var(--texto-ter);
+}
+
+.login-password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.login-password-wrapper.login-input {
+    padding-right: 70px;
+}
+
+.login-mostrar-btn {
+    position: absolute;
+    right: 6px;
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: var(--texto-sec);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-mostrar-btn:hover {
+    color: white;
+    background: rgba(255,255,255,0.12);
+}
+
+/* ========================================================= */
+/* ERROR */
+/* ========================================================= */
+.login-error {
+    background: rgba(255,77,77,0.1);
+    border: 1px solid rgba(255,77,77,0.2);
+    color: var(--rojo);
+    font-size: 13px;
+    padding: 10px 12px;
+    border-radius: var(--radio-sm);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.login-error[hidden] { display: none!important; }
+
+/* ========================================================= */
+/* BOTON */
+/* ========================================================= */
+.login-boton {
+    width: 100%;
+    background: var(--azul);
+    color: white;
+    border: none;
+    border-radius: var(--radio-sm);
+    padding: 13px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 4px;
+}
+
+.login-boton:hover {
+    background: var(--azul-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px var(--azul-glow);
+}
+
+.login-boton:active {
+    transform: scale(0.98);
+}
+
+/* ========================================================= */
+/* FOOTER CARD */
+/* ========================================================= */
+.login-footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--card-borde);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--texto-ter);
+}
+
+.login-estado {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.login-punto {
+    width: 8px;
+    height: 8px;
+    background: #00C896;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0,200,150,0.5);
+}
+
+.login-version {
+    opacity: 0.6;
+}
+
+/* ========================================================= */
+/* COPY */
+/* ========================================================= */
+.login-copy {
+    text-align: center;
+    font-size: 11px;
+    color: var(--texto-ter);
+    margin-top: 8px;
+}
+
+/* ========================================================= */
+/* RESPONSIVE */
+/* ========================================================= */
+@media (min-width: 768px) {
+   .login-wrapper { max-width: 420px; }
+   .login-card { padding: 36px 32px; }
+}
+
+/* ========================================================= */
+/* BANNER DE CONEXION */
+/* ========================================================= */
+.banner-offline {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 2000;
+    background: var(--rojo);
+    color: white;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 12px;
+}
+.banner-offline[hidden] { display: none !important; }
+
+.login-punto.rojo { background: var(--rojo); box-shadow: 0 0 8px rgba(255,77,77,0.5); }
+.login-boton:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
