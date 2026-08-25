@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="/static/css/admin.css">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="stylesheet" href="/static/css/admin.css?v=2">
+    <style>
+        .header-titulo-wrap { display:flex; align-items:center; gap:10px; }
+        .btn-editar-titulo {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            display:flex; align-items:center; justify-content:center;
+            transition: all 0.2s;
+        }
+        .btn-editar-titulo:hover { background: rgba(255,255,255,0.2); transform: scale(1.05); }
+        .header-titulo { cursor: pointer; }
+        .header-titulo:hover { text-decoration: underline; text-decoration-style: dashed; text-underline-offset: 6px; }
+        .reloj-vivo { font-variant-numeric: tabular-nums; }
+    </style>
 </head>
 <body>
 
@@ -15,7 +33,6 @@
     <div class="admin-layout">
 
         <aside class="admin-sidebar">
-
             <div class="sidebar-logo">
                 <img src="/assets/favicon.png" alt="Logo" class="sidebar-logo-img">
                 <div class="sidebar-logo-texto">
@@ -79,7 +96,6 @@
                 <span class="estado-porcentaje" id="espacioPorcentaje">0%</span>
                 <span class="estado-version">v2.0.0</span>
             </div>
-
         </aside>
 
         <main class="admin-main">
@@ -87,10 +103,13 @@
             <header class="admin-header">
                 <div class="header-evento">
                     <span class="header-label">Evento Actual:</span>
-                    <h1 class="header-titulo" id="nombreEvento">Sin configurar</h1>
+                    <div class="header-titulo-wrap">
+                        <h1 class="header-titulo" id="nombreEvento" title="Click para editar">Sin configurar</h1>
+                        <button class="btn-editar-titulo" id="btnEditarTitulo" title="Editar título">✎</button>
+                    </div>
                     <div class="header-meta">
-                        <span>📅 <span id="fechaEvento">--/--/----</span></span>
-                        <span>🕒 <span id="horaEvento">--:-- hs</span></span>
+                        <span>📅 <span id="fechaEvento" class="reloj-vivo">--/--/----</span></span>
+                        <span>🕒 <span id="horaEvento" class="reloj-vivo">--:--:-- hs</span></span>
                     </div>
                 </div>
                 <div class="header-acciones">
@@ -161,6 +180,19 @@
         </div>
     </div>
 
+    <!-- MODAL EDITAR TITULO -->
+    <div class="modal-overlay" id="modalEditarTitulo" hidden>
+        <div class="modal-card">
+            <h3>Editar nombre del evento</h3>
+            <p>Este título se ve en el panel y en la página de los invitados.</p>
+            <input type="text" id="inputTituloEvento" class="modal-input" placeholder="Ej: Casamiento Luli & Juan - Freeport" autocomplete="off" maxlength="100">
+            <div class="modal-acciones">
+                <button class="modal-btn cancelar" id="btnCancelarTitulo">Cancelar</button>
+                <button class="modal-btn peligro" id="btnGuardarTitulo" style="background:#4f46e5">Guardar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL NUEVO EVENTO -->
     <div class="modal-overlay" id="modalNuevoEvento" hidden>
         <div class="modal-card">
@@ -187,6 +219,6 @@
         </div>
     </div>
 
-    <script src="/static/js/admin.js?v=20260825"></script>
+    <script src="/static/js/admin.js?v=20260825_reloj"></script>
 </body>
 </html>
