@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#080F1E">
+    <title>Freeport Moments - Compartí tu momento</title>
+
+    <link rel="stylesheet" href="/static/css/guest.css">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="banner-offline" id="bannerOffline" hidden>
+        <span>📶 Sin conexión. Tus fotos se enviarán apenas vuelva la señal.</span>
+    </div>
+
+    <div class="fondo-contenedor">
+        <div class="fondo-imagen" id="fondoImagen"></div>
+        <div class="fondo-blur"></div>
+        <div class="fondo-overlay"></div>
+        <div class="fondo-degradado"></div>
+    </div>
+
+    <main class="contenedor-principal">
+
+        <header class="encabezado">
+            <div class="logo-contenedor">
+                <img src="/assets/logo.png" alt="Freeport Eventos" class="logo-imagen" id="logoImagen">
+                <div class="logo-texto">
+                    <span class="logo-freeport">Freeport</span>
+                    <span class="logo-eventos">Eventos</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="titulo-seccion">
+            <h1 class="titulo-principal">
+                <span class="titulo-freeport">FREEPORT</span>
+                <span class="titulo-moments">MOMENTS</span>
+            </h1>
+            <div class="titulo-divisor">
+                <span class="divisor-linea"></span>
+                <span class="divisor-icono">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                </span>
+                <span class="divisor-linea"></span>
+            </div>
+            <p class="titulo-subtitulo">Compartí tus mejores momentos<br>de esta noche única</p>
+        </section>
+
+        <section class="subida-seccion">
+            <button class="boton-subir" id="botonSubir" type="button">
+                <div class="boton-subir-glow"></div>
+                <div class="boton-subir-contenido">
+                    <div class="boton-subir-icono">
+                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <span class="boton-subir-titulo">Subir fotos y videos</span>
+                    <span class="boton-subir-subtitulo">Seleccioná varias fotos o videos</span>
+                </div>
+            </button>
+
+            <div class="seguridad-mensaje">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B9BB4" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                <span>Tus archivos se suben de forma<br>segura y privada</span>
+            </div>
+
+            <input type="file" id="inputArchivos" multiple accept="image/*,video/*" hidden>
+        </section>
+
+        <div class="divisor-horizontal"></div>
+
+        <section class="google-seccion">
+            <div class="google-icono">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2B7FFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h3 class="google-titulo">¿Te gustó nuestro salón?</h3>
+            <p class="google-subtitulo">Dejanos tu reseña en Google</p>
+
+            <a href="#" id="botonGoogle" class="boton-google" target="_blank" rel="noopener">
+                <span class="google-logo">
+                    <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                </span>
+                <span>Calificanos en Google</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+        </section>
+
+        <section class="agradecimiento-seccion">
+            <div class="agradecimiento-icono">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="#2B7FFF" stroke="#2B7FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <h3 class="agradecimiento-titulo">¡Gracias por ser parte de esta noche!</h3>
+            <p class="agradecimiento-subtitulo">Tu recuerdo, nuestra historia.</p>
+        </section>
+
+        <footer class="footer">
+            <p>© 2024 <span class="footer-marca">Freeport Eventos</span></p>
+            <p>Todos los derechos reservados.</p>
+        </footer>
+
+    </main>
+
+    <div class="modal-overlay" id="modalProgreso" hidden>
+        <div class="modal-contenido modal-progreso">
+            <div class="progreso-icono"><div class="spinner"></div></div>
+            <h3 class="progreso-titulo">Subiendo tus momentos...</h3>
+            <p class="progreso-subtitulo" id="progresoTexto">0 de 0 archivos</p>
+            <div class="progreso-barra-contenedor"><div class="progreso-barra" id="progresoBarra"></div></div>
+            <div class="progreso-lista" id="progresoLista"></div>
+            <p class="progreso-nota" id="progresoNota" hidden>Señal débil detectada, reintentando automáticamente...</p>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalExito" hidden>
+        <div class="modal-contenido modal-exito">
+            <div class="exito-icono">❤</div>
+            <h2 class="exito-titulo">¡Gracias por compartir<br>este momento!</h2>
+            <p class="exito-subtitulo" id="exitoSubtitulo">Tus fotos ya están con nosotros</p>
+            <button class="boton-exito" id="botonCerrarExito">Seguir compartiendo</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalError" hidden>
+        <div class="modal-contenido modal-error">
+            <div class="error-icono">!</div>
+            <h3 class="error-titulo" id="errorTitulo">No pudimos subir</h3>
+            <p class="error-mensaje" id="errorMensaje">Intentalo de nuevo</p>
+            <div class="error-acciones">
+                <button class="boton-error" id="botonCerrarError">Entendido</button>
+                <button class="boton-reintentar" id="botonReintentar" hidden>Reintentar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/guest.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freeport Moments - Panel</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="stylesheet" href="/static/css/admin.css?v=2">
+</head>
+<body>
+
+    <div class="banner-offline" id="bannerOffline" hidden>Sin conexión con el servidor. Reintentando...</div>
+
+    <div class="admin-layout">
+
+        <aside class="admin-sidebar">
+
+            <div class="sidebar-logo">
+                <img src="/assets/favicon.png" alt="Logo" class="sidebar-logo-img">
+                <div class="sidebar-logo-texto">
+                    <span>Freeport</span>
+                    <span>Moments</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item activo" data-seccion="pendientes">
+                    <span class="nav-icono">◷</span>
+                    <span>Pendientes</span>
+                    <span class="nav-contador naranja" id="contadorPendientesSidebar">0</span>
+                </button>
+                <button class="nav-item" data-seccion="aprobadas">
+                    <span class="nav-icono">✓</span>
+                    <span>Aprobadas</span>
+                    <span class="nav-contador verde" id="contadorAprobadasSidebar">0</span>
+                </button>
+                <button class="nav-item" data-seccion="rechazadas">
+                    <span class="nav-icono">✕</span>
+                    <span>Rechazadas</span>
+                    <span class="nav-contador rojo" id="contadorRechazadasSidebar">0</span>
+                </button>
+                <button class="nav-item" data-seccion="descargas">
+                    <span class="nav-icono">↓</span>
+                    <span>Descargas</span>
+                    <span class="nav-contador azul" id="contadorDescargasSidebar">0</span>
+                </button>
+            </nav>
+
+            <button class="sidebar-descargar-todo" id="btnDescargarAlbum">
+                <span>⇩</span> Descargar álbum aprobadas (ZIP)
+            </button>
+
+            <button class="sidebar-nuevo-evento" id="btnNuevoEvento">
+                <span>+</span> Nuevo Evento
+            </button>
+
+            <button class="sidebar-logout" id="btnLogout">
+                <span>⏻</span> Cerrar sesión
+            </button>
+
+            <div class="sidebar-estado">
+                <p class="estado-titulo">Estado del Sistema</p>
+                <div class="estado-linea">
+                    <span class="estado-punto verde" id="estadoPunto"></span>
+                    <span id="estadoTexto">En línea</span>
+                </div>
+                <div class="estado-detalle">
+                    <span>Servidor</span>
+                    <span>Activo</span>
+                </div>
+                <div class="estado-detalle">
+                    <span>Espacio utilizado</span>
+                    <span id="espacioTexto">0 GB / 50 GB</span>
+                </div>
+                <div class="estado-barra">
+                    <div class="estado-barra-progreso" id="espacioBarra" style="width: 0%;"></div>
+                </div>
+                <span class="estado-porcentaje" id="espacioPorcentaje">0%</span>
+                <span class="estado-version">v2.0.0</span>
+            </div>
+
+        </aside>
+
+        <main class="admin-main">
+
+            <header class="admin-header">
+                <div class="header-evento">
+                    <span class="header-label">Evento Actual:</span>
+                    <h1 class="header-titulo" id="nombreEvento">Sin configurar</h1>
+                    <div class="header-meta">
+                        <span>📅 <span id="fechaEvento">--/--/----</span></span>
+                        <span>🕒 <span id="horaEvento">--:-- hs</span></span>
+                    </div>
+                </div>
+                <div class="header-acciones">
+                    <div class="header-admin">
+                        <img src="/assets/logo.png" alt="Admin" class="header-avatar">
+                        <div class="header-admin-info">
+                            <span class="header-admin-nombre">Admin</span>
+                            <span class="header-admin-rol">Administrador</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="dashboard-stats">
+                <div class="stat-card"><div class="stat-icono azul"><span>👥</span></div><div class="stat-info"><span class="stat-label">Invitados Conectados</span><span class="stat-valor" id="statConectados">0</span><span class="stat-sub">En este momento</span></div></div>
+                <div class="stat-card"><div class="stat-icono azul"><span>🖼️</span></div><div class="stat-info"><span class="stat-label">Fotos Recibidas</span><span class="stat-valor" id="statFotos">0</span><span class="stat-sub">Total del evento</span></div></div>
+                <div class="stat-card"><div class="stat-icono morado"><span>🎥</span></div><div class="stat-info"><span class="stat-label">Videos Recibidos</span><span class="stat-valor" id="statVideos">0</span><span class="stat-sub">Total del evento</span></div></div>
+                <div class="stat-card"><div class="stat-icono naranja"><span>⏳</span></div><div class="stat-info"><span class="stat-label">Pendientes</span><span class="stat-valor" id="statPendientes">0</span><span class="stat-sub">Por revisar</span></div></div>
+                <div class="stat-card"><div class="stat-icono verde"><span>✓</span></div><div class="stat-info"><span class="stat-label">Aprobadas</span><span class="stat-valor" id="statAprobadas">0</span><span class="stat-sub">Listas para descarga</span></div></div>
+                <div class="stat-card"><div class="stat-icono rojo"><span>✕</span></div><div class="stat-info"><span class="stat-label">Rechazadas</span><span class="stat-valor" id="statRechazadas">0</span><span class="stat-sub">En papelera</span></div></div>
+                <div class="stat-card"><div class="stat-icono azul"><span>↓</span></div><div class="stat-info"><span class="stat-label">Descargadas</span><span class="stat-valor" id="statDescargadas">0</span><span class="stat-sub">Por el administrador</span></div></div>
+            </section>
+
+            <section class="galeria-seccion">
+                <div class="galeria-header">
+                    <div class="galeria-titulo-area">
+                        <h2 class="galeria-titulo" id="galeriaTitulo">Pendientes <span class="galeria-badge naranja" id="galeriaBadge">0</span></h2>
+                        <p class="galeria-subtitulo" id="galeriaSubtitulo">Archivos esperando revisión</p>
+                    </div>
+                    <div class="galeria-controles">
+                        <button class="galeria-btn" id="btnActualizar">↻ Actualizar</button>
+                    </div>
+                </div>
+                <div class="galeria-grid" id="galeriaGrid">
+                    <div class="galeria-vacio" id="galeriaVacio">
+                        <div class="vacio-icono">📷</div>
+                        <h3 class="vacio-titulo">Aún no hay archivos</h3>
+                        <p class="vacio-texto">Los momentos que suban tus invitados aparecerán aquí.</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="admin-footer">
+                <span>Freeport Moments. Panel de administración.</span>
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- VISOR CARRUSEL -->
+    <div class="visor-overlay" id="visorOverlay" hidden>
+        <button class="visor-cerrar" id="visorCerrar">✕</button>
+        <button class="visor-nav anterior" id="visorAnterior">‹</button>
+        <button class="visor-nav siguiente" id="visorSiguiente">›</button>
+        <div class="visor-contenido">
+            <img class="visor-imagen" id="visorImagen" src="" alt="">
+            <video class="visor-video" id="visorVideo" controls hidden></video>
+        </div>
+        <div class="visor-acciones">
+            <button class="visor-btn rechazar" id="visorRechazar">✕ Rechazar</button>
+            <button class="visor-btn eliminar" id="visorEliminar">🗑 Eliminar</button>
+            <button class="visor-btn descargar" id="visorDescargar">↓ Descargar</button>
+            <button class="visor-btn aprobar" id="visorAprobar">✓ Aprobar</button>
+        </div>
+        <div class="visor-info">
+            <span id="visorNombre">-</span>
+            <span id="visorContador">0 / 0</span>
+        </div>
+    </div>
+
+    <!-- MODAL NUEVO EVENTO -->
+    <div class="modal-overlay" id="modalNuevoEvento" hidden>
+        <div class="modal-card">
+            <h3>¿Crear Nuevo Evento?</h3>
+            <p>Se eliminará TODA la información del evento actual (fotos, videos y estadísticas). Esta acción no se puede deshacer.</p>
+            <p class="modal-confirmacion-label">Escribí <strong>BORRAR</strong> para confirmar:</p>
+            <input type="text" id="inputConfirmarBorrado" class="modal-input" autocomplete="off">
+            <div class="modal-acciones">
+                <button class="modal-btn cancelar" id="btnCancelarEvento">Cancelar</button>
+                <button class="modal-btn peligro" id="btnConfirmarEvento" disabled>Sí, borrar todo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ELIMINAR ARCHIVO -->
+    <div class="modal-overlay" id="modalEliminarArchivo" hidden>
+        <div class="modal-card">
+            <h3>¿Eliminar este archivo?</h3>
+            <p>El archivo se borrará permanentemente del servidor. Esta acción no se puede deshacer.</p>
+            <div class="modal-acciones">
+                <button class="modal-btn cancelar" id="btnCancelarEliminar">Cancelar</button>
+                <button class="modal-btn peligro" id="btnConfirmarEliminar">Sí, eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/admin.js?v=20260825"></script>
+</body>
+</html>

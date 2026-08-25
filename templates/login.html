@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080F1E">
+    <title>Freeport Moments - Admin</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+</head>
+<body>
+
+    <!-- Fondo - imagen editable en assets/background.jpg -->
+    <div class="login-fondo"></div>
+
+    <div class="banner-offline" id="bannerOffline" hidden>
+        Sin conexión a internet. Reconectando...
+    </div>
+
+    <main class="login-wrapper">
+        <section class="login-card">
+
+            <div class="login-logo-area">
+                <img src="/assets/logo.png" alt="Logo" class="login-logo">
+            </div>
+
+            <div class="login-header">
+                <h1 class="login-titulo">Panel Administrador</h1>
+                <p class="login-subtitulo">Acceso exclusivo para personal de Freeport Eventos</p>
+            </div>
+
+            <form class="login-form" id="loginForm" autocomplete="on">
+                <div class="login-campo">
+                    <label class="login-label" for="usuario">Usuario</label>
+                    <input type="text" id="usuario" name="usuario" class="login-input"
+                           placeholder="Ingresá tu usuario" required autocomplete="username" maxlength="80">
+                </div>
+
+                <div class="login-campo">
+                    <label class="login-label" for="password">Contraseña</label>
+                    <div class="login-password-wrapper">
+                        <input type="password" id="password" name="password" class="login-input"
+                               placeholder="••••••••" required autocomplete="current-password" maxlength="200">
+                        <button type="button" class="login-mostrar-btn" id="btnMostrarPassword">Mostrar</button>
+                    </div>
+                </div>
+
+                <div class="login-error" id="loginError" hidden>
+                    <span id="loginErrorTexto">Usuario o contraseña incorrectos</span>
+                </div>
+
+                <button type="submit" class="login-boton" id="btnLogin">Entrar</button>
+            </form>
+
+            <div class="login-footer">
+                <div class="login-estado">
+                    <span class="login-punto" id="puntoEstado"></span>
+                    <span id="textoEstado">Sistema activo</span>
+                </div>
+                <span class="login-version">v2.0.0</span>
+            </div>
+        </section>
+
+        <p class="login-copy">© 2024 Freeport Eventos - Todos los derechos reservados</p>
+    </main>
+
+    <script src="/static/js/login.js"></script>
+</body>
+</html>
