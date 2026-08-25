@@ -1,5 +1,5 @@
 // ===================================================================
-// FREEPORT MOMENTS - ADMIN JS (Corregido)
+// FREEPORT MOMENTS - ADMIN JS - ACTUALIZADO CON RELOJ Y EDITOR TITULO
 // ===================================================================
 
 let archivosActuales = [];
@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     inicializarEliminarArchivo();
     inicializarLogout();
     inicializarDescargaAlbum();
+    inicializarReloj();
+    inicializarEdicionTitulo();
     cargarEstadisticas();
     cargarSeccion('pendientes');
 });
@@ -39,6 +41,97 @@ setInterval(() => {
 
 window.addEventListener('online', () => actualizarIndicadorConexion(true));
 window.addEventListener('offline', () => actualizarIndicadorConexion(false));
+
+// ================= RELOJ EN VIVO =================
+function inicializarReloj() {
+    actualizarFechaHoraActual();
+    setInterval(actualizarFechaHoraActual, 1000);
+}
+
+function actualizarFechaHoraActual() {
+    const ahora = new Date();
+    // Fecha actual siempre
+    const fechaStr = ahora.toLocaleDateString('es-AR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+    // Hora reloj contando segundos
+    const horaStr = ahora.toLocaleTimeString('es-AR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    }) + ' hs';
+
+    setTexto('fechaEvento', fechaStr);
+    setTexto('horaEvento', horaStr);
+}
+
+// ================= EDITAR TITULO =================
+function inicializarEdicionTitulo() {
+    const btnEditar = document.getElementById('btnEditarTitulo');
+    const modal = document.getElementById('modalEditarTitulo');
+    const input = document.getElementById('inputTituloEvento');
+    const btnCancelar = document.getElementById('btnCancelarTitulo');
+    const btnGuardar = document.getElementById('btnGuardarTitulo');
+    const nombreEl = document.getElementById('nombreEvento');
+
+    if (!btnEditar || !modal || !input) return;
+
+    const abrirModal = () => {
+        input.value = nombreEl.textContent.trim() === 'Sin configurar' ? '' : nombreEl.textContent.trim();
+        modal.hidden = false;
+        setTimeout(() => { input.focus(); input.select(); }, 50);
+    };
+
+    btnEditar.addEventListener('click', abrirModal);
+    nombreEl.addEventListener('click', abrirModal);
+
+    const cerrarModal = () => { modal.hidden = true; };
+
+    if (btnCancelar) btnCancelar.addEventListener('click', cerrarModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) cerrarModal(); });
+
+    document.addEventListener('keydown', (e) => {
+        if (!modal.hidden && e.key === 'Escape') cerrarModal();
+        if (!modal.hidden && e.key === 'Enter') btnGuardar.click();
+    });
+
+    btnGuardar.addEventListener('click', async () => {
+        const nuevoNombre = input.value.trim();
+        if (!nuevoNombre) { alert('El título no puede estar vacío'); return; }
+        if (nuevoNombre.length < 2 || nuevoNombre.length > 100) {
+            alert('El título debe tener entre 2 y 100 caracteres');
+            return;
+        }
+        btnGuardar.disabled = true;
+        const textoOrig = btnGuardar.textContent;
+        btnGuardar.textContent = 'Guardando...';
+        try {
+            const res = await apiFetch('/api/evento/config', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nombre: nuevoNombre }),
+            });
+            if (!res.ok) {
+                const data = await res.json().catch(() => ({}));
+                throw new Error(data.detail || 'Error al guardar');
+            }
+            setTexto('nombreEvento', nuevoNombre);
+            modal.hidden = true;
+            // Feedback visual
+            nombreEl.style.transition = 'color 0.3s';
+            nombreEl.style.color = '#4ade80';
+            setTimeout(() => nombreEl.style.color = '', 800);
+        } catch (e) {
+            alert('No se pudo guardar: ' + e.message);
+        } finally {
+            btnGuardar.disabled = false;
+            btnGuardar.textContent = textoOrig;
+        }
+    });
+}
 
 function actualizarIndicadorConexion(conectado) {
     bannerOffline.hidden = conectado;
@@ -55,7 +148,6 @@ async function apiFetch(url, opciones = {}) {
         const respuesta = await fetch(url, opciones);
         fallosDeRedConsecutivos = 0;
         actualizarIndicadorConexion(true);
-
         if (respuesta.status === 401) {
             window.location.href = '/login';
             throw new Error('Sesión expirada');
@@ -94,13 +186,13 @@ function inicializarLogout() {
     document.getElementById('btnLogout').addEventListener('click', async () => {
         try {
             await apiFetch('/api/logout', { method: 'POST' });
-        } catch { /* ignorar error de red al salir */ }
+        } catch { }
         window.location.href = '/login';
     });
 }
 
 // =========================================================
-// ESTADISTICAS
+// ESTADISTICAS - AHORA NO SOBRESCRIBE FECHA/HORA
 // =========================================================
 async function cargarEstadisticas() {
     try {
@@ -122,9 +214,10 @@ async function cargarEstadisticas() {
         setTexto('statDescargadas', stats.descargadas);
 
         if (stats.evento) {
-            setTexto('nombreEvento', stats.evento.nombre || 'Sin configurar');
-            setTexto('fechaEvento', stats.evento.fecha || '--/--/----');
-            setTexto('horaEvento', stats.evento.hora || '--:-- hs');
+            // Solo actualizamos nombre, fecha/hora las maneja el reloj vivo
+            if (stats.evento.nombre) {
+                setTexto('nombreEvento', stats.evento.nombre || 'Sin configurar');
+            }
         }
 
         if (stats.espacio) {
@@ -161,155 +254,102 @@ async function cargarSeccion(seccion, mostrarCargando = true) {
         renderizarGaleria(archivosActuales);
     } catch (e) {
         if (mostrarCargando) {
-            galeriaGrid.innerHTML = '<div class="galeria-vacio error"><div class="vacio-icono">⚠️</div><h3 class="vacio-titulo">No se pudo cargar</h3><p class="vacio-texto">Revisá tu conexión, reintentando automáticamente...</p></div>';
+            galeriaGrid.innerHTML = `<div class="galeria-error">Error al cargar: ${e.message}</div>`;
         }
     }
 }
 
 function renderizarGaleria(archivos) {
-    galeriaGrid.innerHTML = '';
-    if (archivos.length === 0) {
-        galeriaGrid.innerHTML = `<div class="galeria-vacio"><div class="vacio-icono">📷</div><h3>Aún no hay archivos en ${seccionActual}</h3><p>Los momentos que suban tus invitados aparecerán aquí.</p></div>`;
+    if (!archivos || archivos.length === 0) {
+        galeriaGrid.innerHTML = `
+            <div class="galeria-vacio">
+                <div class="vacio-icono">📷</div>
+                <h3 class="vacio-titulo">Aún no hay archivos</h3>
+                <p class="vacio-texto">Los momentos que suban tus invitados aparecerán aquí.</p>
+            </div>`;
         return;
     }
-    const fragmento = document.createDocumentFragment();
-    archivos.forEach((archivo, index) => {
+
+    galeriaGrid.innerHTML = '';
+    archivos.forEach((archivo, idx) => {
         const card = document.createElement('div');
         card.className = 'media-card';
-        const esVideo = archivo.tipo && archivo.tipo.includes('video');
-        const urlOriginal = archivo.url || `/uploads/${seccionActual}/${archivo.nombre}`;
-        const urlMiniatura = (!esVideo && archivo.thumbnail_url) ? archivo.thumbnail_url : urlOriginal;
-
-        const thumb = esVideo
-            ? `<video class="media-thumb" src="${urlOriginal}#t=0.5" muted preload="metadata" playsinline></video>`
-            : `<img class="media-thumb" src="${urlMiniatura}" loading="lazy" alt="">`;
-
-        const badgeVideo = esVideo ? '<span class="media-thumb-video-badge">▶ video</span>' : '';
-
-        card.innerHTML = `${thumb}${badgeVideo}<div class="media-overlay"><span class="media-tiempo">${formatearTiempo(archivo.fecha)}</span></div>`;
-        card.addEventListener('click', () => abrirVisor(index));
-        fragmento.appendChild(card);
+        const esVideo = /\.(mp4|mov|avi|mkv|webm|m4v)$/i.test(archivo.nombre);
+        const thumb = archivo.thumbnail_url || `/uploads/${seccionActual}/${encodeURIComponent(archivo.nombre)}`;
+        card.innerHTML = `
+            ${esVideo ? `<video class="media-thumb" src="/uploads/${seccionActual}/${encodeURIComponent(archivo.nombre)}" muted></video><span class="media-badge">VIDEO</span>` : `<img class="media-thumb" src="${thumb}" alt="" loading="lazy">`}
+            <div class="media-info">
+                <span class="media-nombre" title="${archivo.nombre}">${archivo.nombre_original || archivo.nombre}</span>
+                <span class="media-fecha">${archivo.fecha || ''}</span>
+            </div>
+        `;
+        card.addEventListener('click', () => abrirVisor(idx));
+        galeriaGrid.appendChild(card);
     });
-    galeriaGrid.appendChild(fragmento);
-}
-
-function formatearTiempo(fechaStr) {
-    if (!fechaStr) return 'Ahora';
-    try {
-        const fecha = new Date(fechaStr.replace(' ', 'T'));
-        const diff = Date.now() - fecha.getTime();
-        const minutos = Math.floor(diff / 60000);
-        if (minutos < 1) return 'Ahora';
-        if (minutos < 60) return `Hace ${minutos} min`;
-        const horas = Math.floor(minutos / 60);
-        if (horas < 24) return `Hace ${horas}h`;
-        return fecha.toLocaleDateString('es-AR');
-    } catch {
-        return 'Hace un momento';
-    }
 }
 
 // =========================================================
-// VISOR CARRUSEL
+// VISOR
 // =========================================================
 function inicializarVisor() {
-    const btnCerrar = document.getElementById('visorCerrar');
-    const btnAnterior = document.getElementById('visorAnterior');
-    const btnSiguiente = document.getElementById('visorSiguiente');
-    const btnAprobar = document.getElementById('visorAprobar');
-    const btnRechazar = document.getElementById('visorRechazar');
-    const btnDescargar = document.getElementById('visorDescargar');
-    const btnEliminar = document.getElementById('visorEliminar');
-
-    if (btnCerrar) btnCerrar.addEventListener('click', cerrarVisor);
-    if (btnAnterior) btnAnterior.addEventListener('click', () => navegarVisor(-1));
-    if (btnSiguiente) btnSiguiente.addEventListener('click', () => navegarVisor(1));
-    
-    if (btnAprobar) btnAprobar.addEventListener('click', () => accionArchivo('aprobar'));
-    if (btnRechazar) btnRechazar.addEventListener('click', () => accionArchivo('rechazar'));
-    if (btnDescargar) btnDescargar.addEventListener('click', () => accionArchivo('descargar'));
-    
-    if (btnEliminar) {
-        btnEliminar.addEventListener('click', () => {
-            archivoAEliminar = archivosActuales[archivoActualIndex];
-            const modalEliminar = document.getElementById('modalEliminarArchivo');
-            if (modalEliminar) modalEliminar.hidden = false;
-        });
-    }
-
-    if (visorOverlay) {
-        visorOverlay.addEventListener('click', (e) => { 
-            if (e.target === visorOverlay) cerrarVisor(); 
-        });
-    }
-
+    document.getElementById('visorCerrar').addEventListener('click', cerrarVisor);
+    document.getElementById('visorAnterior').addEventListener('click', () => navegarVisor(-1));
+    document.getElementById('visorSiguiente').addEventListener('click', () => navegarVisor(1));
+    document.getElementById('visorAprobar').addEventListener('click', () => accionarArchivo('aprobar'));
+    document.getElementById('visorRechazar').addEventListener('click', () => accionarArchivo('rechazar'));
+    document.getElementById('visorDescargar').addEventListener('click', () => accionarArchivo('descargar'));
+    document.getElementById('visorEliminar').addEventListener('click', () => {
+        archivoAEliminar = archivosActuales[archivoActualIndex];
+        document.getElementById('modalEliminarArchivo').hidden = false;
+    });
+    visorOverlay.addEventListener('click', (e) => { if (e.target === visorOverlay) cerrarVisor(); });
     document.addEventListener('keydown', (e) => {
-        if (!visorOverlay || visorOverlay.hidden) return;
+        if (visorOverlay.hidden) return;
         if (e.key === 'Escape') cerrarVisor();
         if (e.key === 'ArrowLeft') navegarVisor(-1);
         if (e.key === 'ArrowRight') navegarVisor(1);
     });
 }
 
-function abrirVisor(index) {
-    archivoActualIndex = index;
+function abrirVisor(idx) {
+    archivoActualIndex = idx;
     mostrarArchivoEnVisor();
-    if (visorOverlay) visorOverlay.hidden = false;
-    document.body.style.overflow = 'hidden';
+    visorOverlay.hidden = false;
 }
 
 function cerrarVisor() {
-    if (visorOverlay) visorOverlay.hidden = true;
-    document.body.style.overflow = '';
-    if (visorImagen) visorImagen.src = '';
-    if (visorVideo) {
-        visorVideo.pause();
-        visorVideo.src = '';
-        visorVideo.load();
-    }
+    visorOverlay.hidden = true;
+    if (visorVideo) { visorVideo.pause(); visorVideo.hidden = true; visorVideo.src = ''; }
+    visorImagen.src = '';
 }
 
 function navegarVisor(dir) {
-    archivoActualIndex += dir;
-    if (archivoActualIndex < 0) archivoActualIndex = archivosActuales.length - 1;
-    if (archivoActualIndex >= archivosActuales.length) archivoActualIndex = 0;
+    if (!archivosActuales.length) return;
+    archivoActualIndex = (archivoActualIndex + dir + archivosActuales.length) % archivosActuales.length;
     mostrarArchivoEnVisor();
 }
 
 function mostrarArchivoEnVisor() {
     const archivo = archivosActuales[archivoActualIndex];
     if (!archivo) return;
-    const url = archivo.url || `/uploads/${seccionActual}/${archivo.nombre}`;
-    const esVideo = archivo.tipo && archivo.tipo.includes('video');
-    
-    if (visorNombre) visorNombre.textContent = archivo.nombre_original || archivo.nombre || 'Archivo';
-    if (visorContador) visorContador.textContent = `${archivoActualIndex + 1} / ${archivosActuales.length}`;
-
-    if (visorVideo && visorVideo.src) {
-        visorVideo.pause();
-        visorVideo.src = '';
-        visorVideo.load();
-    }
+    const esVideo = /\.(mp4|mov|avi|mkv|webm|m4v)$/i.test(archivo.nombre);
+    visorNombre.textContent = archivo.nombre_original || archivo.nombre;
+    visorContador.textContent = `${archivoActualIndex + 1} / ${archivosActuales.length}`;
 
     if (esVideo) {
-        if (visorImagen) visorImagen.hidden = true;
-        if (visorVideo) {
-            visorVideo.hidden = false;
-            visorVideo.src = url;
-        }
+        visorImagen.hidden = true;
+        visorVideo.hidden = false;
+        visorVideo.src = `/uploads/${seccionActual}/${encodeURIComponent(archivo.nombre)}`;
+        visorVideo.load();
     } else {
-        if (visorVideo) visorVideo.hidden = true;
-        if (visorImagen) {
-            visorImagen.hidden = false;
-            visorImagen.src = url;
-        }
+        visorVideo.hidden = true;
+        visorVideo.pause();
+        visorImagen.hidden = false;
+        visorImagen.src = `/uploads/${seccionActual}/${encodeURIComponent(archivo.nombre)}`;
     }
 }
 
-// =========================================================
-// ACCIONES SOBRE ARCHIVOS (aprobar / rechazar / descargar)
-// =========================================================
-async function accionArchivo(accion) {
+async function accionarArchivo(accion) {
     const archivo = archivosActuales[archivoActualIndex];
     if (!archivo) return;
     try {
@@ -318,25 +358,14 @@ async function accionArchivo(accion) {
             visorVideo.src = '';
             visorVideo.load();
         }
-        document.querySelectorAll('video.media-thumb').forEach(v => {
-            if (v.src && v.src.includes(archivo.nombre)) {
-                v.pause();
-                v.src = '';
-                v.load();
-                v.remove();
-            }
-        });
-        await new Promise(r => setTimeout(r, 350));
-
+        await new Promise(r => setTimeout(r, 200));
         const res = await apiFetch('/api/archivos/accion', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nombre: archivo.nombre, estado_actual: seccionActual, accion }),
         });
         const data = await res.json().catch(() => ({}));
-        if (!res.ok) {
-            throw new Error(data.detail || `Error ${res.status}`);
-        }
+        if (!res.ok) throw new Error(data.detail || `Error ${res.status}`);
 
         if (accion === 'descargar') {
             window.location.href = `/api/archivos/descargar?archivo=${encodeURIComponent(archivo.nombre)}&estado=${seccionActual}`;
@@ -345,7 +374,6 @@ async function accionArchivo(accion) {
             cargarEstadisticas();
         }
     } catch (e) {
-        console.error('Error en la acción del archivo:', e);
         alert('Error en la acción: ' + e.message);
     }
 }
@@ -362,9 +390,6 @@ function quitarArchivoDeListaActual() {
     }
 }
 
-// =========================================================
-// ELIMINAR ARCHIVO (borrado definitivo)
-// =========================================================
 function inicializarEliminarArchivo() {
     const modal = document.getElementById('modalEliminarArchivo');
     const btnCancelar = document.getElementById('btnCancelarEliminar');
@@ -376,7 +401,6 @@ function inicializarEliminarArchivo() {
             archivoAEliminar = null;
         });
     }
-
     if (btnConfirmar) {
         btnConfirmar.addEventListener('click', async () => {
             if (!archivoAEliminar) return;
@@ -402,9 +426,6 @@ function inicializarEliminarArchivo() {
     }
 }
 
-// =========================================================
-// DESCARGAR ALBUM COMPLETO (ZIP)
-// =========================================================
 function inicializarDescargaAlbum() {
     const btn = document.getElementById('btnDescargarAlbum');
     if (!btn) return;
@@ -436,16 +457,12 @@ function inicializarDescargaAlbum() {
     });
 }
 
-// =========================================================
-// NUEVO EVENTO
-// =========================================================
 function inicializarNuevoEvento() {
     const modal = document.getElementById('modalNuevoEvento');
     const input = document.getElementById('inputConfirmarBorrado');
     const btnConfirmar = document.getElementById('btnConfirmarEvento');
     const btnNuevo = document.getElementById('btnNuevoEvento');
     const btnCancelar = document.getElementById('btnCancelarEvento');
-
     if (!modal || !input || !btnConfirmar || !btnNuevo) return;
 
     btnNuevo.addEventListener('click', () => {
@@ -453,26 +470,18 @@ function inicializarNuevoEvento() {
         btnConfirmar.disabled = true;
         modal.hidden = false;
     });
-
-    if (btnCancelar) {
-        btnCancelar.addEventListener('click', () => { modal.hidden = true; });
-    }
-
+    if (btnCancelar) btnCancelar.addEventListener('click', () => { modal.hidden = true; });
     input.addEventListener('input', () => {
         btnConfirmar.disabled = input.value.trim().toUpperCase() !== 'BORRAR';
     });
-
     btnConfirmar.addEventListener('click', async () => {
         if (input.value.trim().toUpperCase() !== 'BORRAR') return;
         btnConfirmar.disabled = true;
         btnConfirmar.textContent = 'Borrando...';
         try {
             const res = await apiFetch('/api/evento/nuevo', { method: 'POST' });
-            if (res.ok) {
-                location.reload();
-            } else {
-                alert('No se pudo reiniciar el evento.');
-            }
+            if (res.ok) location.reload();
+            else alert('No se pudo reiniciar el evento.');
         } catch (e) {
             alert('Error de conexión al reiniciar el evento.');
         } finally {
