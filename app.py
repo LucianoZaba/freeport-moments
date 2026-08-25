@@ -32,6 +32,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.background import BackgroundTask
 
+import config as config_module
 from config import (
     ADMIN_CONFIG, ASSETS_DIR, BASE_DIR, DATABASE_CONFIG, RATE_LIMIT_CONFIG,
     SERVER_CONFIG, UPLOAD_CONFIG, UPLOAD_DIR, get_public_config, logger,
@@ -648,16 +649,45 @@ async def api_logout(request: Request):
 # ===================================================================
 @app.get("/api/estadisticas")
 async def api_estadisticas(_sesion=Depends(requiere_admin)):
-    limpiar_invitados_inactivos()
+    from datetime import datetime
     stats = await asyncio.to_thread(db.obtener_estadisticas)
-    with _lock_invitados:
-        stats["conectados"] = len(invitados_activos)
-    from config import EVENTO_CONFIG
+
+    # FECHA Y HORA SIEMPRE ACTUALES - reloj vivo en frontend
+    ahora = datetime.now()
+    evento_actual = config_module._cargar_evento_config()
+
     stats["evento"] = {
-        "nombre": EVENTO_CONFIG["nombre"],
-        "fecha": EVENTO_CONFIG["fecha"],
-        "hora": EVENTO_CONFIG["hora"],
+        "nombre": evento_actual.get("nombre", "Evento de la Noche"),
+        "fecha": ahora.strftime("%d/%m/%Y"),
+        "hora": ahora.strftime("%H:%M:%S hs"),
+        "descripcion": evento_actual.get("descripcion", ""),
+        "lugar": evento_actual.get("lugar", ""),
     }
+
+    # invitados conectados (ultimos 2 min)
+    with _lock_invitados:
+        limite = datetime.now() - timedelta(minutes=2)
+        stats["conectados"] = sum(1 for t in invitados_activos.values() if t > limite)
+
+    # espacio
+    try:
+        total = 0
+        for p in UPLOAD_DIR.rglob("*"):
+            if p.is_file():
+                try:
+                    total += p.stat().st_size
+                except OSError:
+                    pass
+        total_gb = total / (1024**3)
+        max_gb = SERVER_CONFIG.get("espacio_total_gb", 50)
+        porcentaje = min(100, int((total_gb / max_gb * 100) if max_gb else 0))
+        stats["espacio"] = {
+            "texto": f"{total_gb:.2f} GB / {max_gb} GB",
+            "porcentaje": porcentaje,
+        }
+    except Exception:
+        stats["espacio"] = {"texto": "0 GB / 50 GB", "porcentaje": 0}
+
     return stats
 
 
@@ -786,7 +816,36 @@ async def api_descargar_todo(estado: str = "aprobadas", _sesion=Depends(requiere
 @app.post("/api/evento/nuevo")
 async def api_nuevo_evento(_sesion=Depends(requiere_admin)):
     await asyncio.to_thread(db.borrar_todo_evento)
+    # también resetear config de evento a default
+    try:
+        await asyncio.to_thread(config_module.guardar_evento_config, {"nombre": "Evento de la Noche"})
+    except Exception:
+        pass
     return {"ok": True}
+
+
+@app.post("/api/evento/config")
+async def api_actualizar_config_evento(datos: dict, _sesion=Depends(requiere_admin)):
+    """Permite cambiar el titulo del evento desde el panel admin."""
+    nombre = str(datos.get("nombre", "")).strip()
+    if not nombre:
+        raise HTTPException(status_code=400, detail="El nombre no puede estar vacío")
+    if len(nombre) < 2 or len(nombre) > 100:
+        raise HTTPException(status_code=400, detail="El nombre debe tener entre 2 y 100 caracteres")
+    try:
+        nuevo = await asyncio.to_thread(config_module.actualizar_nombre_evento, nombre)
+        return {"ok": True, "evento": nuevo}
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error(f"Error guardando config evento: {e}")
+        raise HTTPException(status_code=500, detail="No se pudo guardar el título")
+
+
+@app.get("/api/evento/config")
+async def api_get_config_evento(_sesion=Depends(requiere_admin)):
+    evento = await asyncio.to_thread(config_module._cargar_evento_config)
+    return {"evento": evento}
 
 
 # ===================================================================
