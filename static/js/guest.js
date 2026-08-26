@@ -248,7 +248,7 @@ async function subirPorBloques(archivo, onReintento) {
     const tamanoBloque = 8 * 1024 * 1024; // 8MB - antes 2MB
     const totalBloques = Math.ceil(archivo.size / tamanoBloque);
     const idSubida = `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
-    const CONCURRENCIA = 3; // 3 chunks a la vez
+    const CONCURRENCIA = 4; // 4 chunks a la vez (el servidor ya los escribe en paralelo real)
 
     let bloquesCompletados = 0;
 
