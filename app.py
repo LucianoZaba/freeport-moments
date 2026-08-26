@@ -4,20 +4,17 @@
 # desde el celular durante toda la noche, y el administrador las
 # revise, apruebe/rechace y descargue el álbum filtrado.
 #
-# Pensado para correr en una notebook local durante horas sin
-# supervisión constante, expuesto a internet mediante un túnel de
-# Cloudflare (cloudflared) para que los invitados no necesiten estar
-# en la misma red WiFi. Ver README.md para el paso a paso.
+# Pensado para correr en un servidor (por ejemplo Render) accesible por
+# HTTPS, para que los invitados suban fotos/videos desde el celular sin
+# necesitar estar en la misma red. Ver README.md para el paso a paso.
 # ===================================================================
 import asyncio
 import contextlib
 import mimetypes
 import re
 import shutil
-import subprocess
 import time
 import uuid
-import webbrowser
 from collections import defaultdict
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -111,60 +108,6 @@ def limitar(nombre_endpoint: str, limite_por_minuto: int):
 def es_nombre_seguro(nombre: str) -> bool:
     """Evita path traversal: solo letras, numeros, punto, guion y guion bajo."""
     return bool(nombre) and bool(_NOMBRE_SEGURO_RE.match(nombre)) and ".." not in nombre
- 
- 
-def abrir_navegador():
-    time.sleep(1.5)
-    url = f"http://localhost:{SERVER_CONFIG['port']}/admin"
-    logger.info(f"Abriendo el navegador en {url} ...")
-    try:
-        webbrowser.open(url)
-    except Exception as e:
-        logger.warning(f"No se pudo abrir el navegador automaticamente: {e}")
- 
- 
-def iniciar_tunel_cloudflare():
-    """
-    Lanza 'cloudflared tunnel --url http://localhost:PORT' si el binario
-    esta disponible, y publica en el log la URL publica (algo como
-    https://xxxx-xxxx.trycloudflare.com) para compartir con los invitados.
-    No requiere cuenta de Cloudflare (tunel rapido / "quick tunnel").
-    """
-    binario = shutil.which("cloudflared")
-    if not binario:
-        logger.warning(
-            "cloudflared no esta instalado o no esta en el PATH. "
-            "Instalalo desde https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/ "
-            "para poder generar un link publico sin abrir puertos en el router. "
-            "Mientras tanto la app solo sera accesible dentro de la misma red WiFi."
-        )
-        return
- 
-    try:
-        proceso = subprocess.Popen(
-            [binario, "tunnel", "--url", f"http://localhost:{SERVER_CONFIG['port']}"],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            bufsize=1,
-        )
-    except OSError as e:
-        logger.error(f"No se pudo iniciar cloudflared: {e}")
-        return
- 
-    patron_url = re.compile(r"https://[a-zA-Z0-9-]+\.trycloudflare\.com")
-    logger.info("Iniciando tunel de Cloudflare, esto puede tardar unos segundos...")
- 
-    def _leer_salida():
-        for linea in proceso.stdout:
-            match = patron_url.search(linea)
-            if match:
-                logger.info("=" * 70)
-                logger.info(f"LINK PUBLICO PARA COMPARTIR CON LOS INVITADOS: {match.group(0)}")
-                logger.info("=" * 70)
- 
-    import threading
-    threading.Thread(target=_leer_salida, daemon=True).start()
  
  
 def limpiar_invitados_inactivos():
@@ -640,11 +583,15 @@ async def api_login(
         await asyncio.to_thread(db.crear_sesion, token, usuario, expira)
  
         response = JSONResponse({"ok": True, "mensaje": "Login correcto"})
+        # Detecta automaticamente si la conexion es https (por ejemplo el
+        # dominio que da Render) o http, para que la cookie "secure" nunca
+        # quede mal seteada.
+        es_https = request.url.scheme == "https" or request.headers.get("x-forwarded-proto") == "https"
         response.set_cookie(
             key="session_token",
             value=token,
             httponly=True,
-            secure=ADMIN_CONFIG["cookie_secure"],
+            secure=es_https,
             samesite="lax",
             max_age=ADMIN_CONFIG["session_expire_hours"] * 3600,
         )
@@ -876,15 +823,7 @@ async def api_get_config_evento(_sesion=Depends(requiere_admin)):
 # PUNTO DE ENTRADA
 # ===================================================================
 if __name__ == "__main__":
-    import threading
- 
     import uvicorn
- 
-    if SERVER_CONFIG["abrir_navegador"]:
-        threading.Thread(target=abrir_navegador, daemon=True).start()
- 
-    if SERVER_CONFIG["iniciar_tunel_cloudflare"]:
-        threading.Thread(target=iniciar_tunel_cloudflare, daemon=True).start()
  
     try:
         uvicorn.run(
