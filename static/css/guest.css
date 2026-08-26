@@ -271,3 +271,134 @@ body {
     cursor: pointer;
 }
 .boton-reintentar[hidden] { display: none !important; }
+
+/* ========================================================= */
+/* NUEVO: WIFI CARD DEBAJO DEL BOTON DE SUBIDA */
+/* ========================================================= */
+.wifi-card {
+    width: 100%;
+    background: rgba(18, 26, 43, 0.6);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+    backdrop-filter: blur(10px);
+}
+.wifi-icono {
+    width: 36px; height: 36px;
+    background: rgba(43,127,255,0.12);
+    border: 1px solid rgba(43,127,255,0.2);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.wifi-textos { display: flex; flex-direction: column; gap: 2px; }
+.wifi-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gris-texto-terciario); }
+.wifi-datos { font-size: 13.5px; color: #D8E4F5; line-height: 1.3; }
+.wifi-datos strong { color: white; font-weight: 700; }
+.wifi-separador { opacity: 0.5; margin: 0 4px; }
+.wifi-clave { font-family: monospace; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 6px; font-size: 13px; letter-spacing: 0.02em; color: white; border: 1px solid rgba(255,255,255,0.1); }
+
+/* ========================================================= */
+/* NUEVO: 5 ESTRELLAS PROFESIONALES BRILLANDO */
+/* ========================================================= */
+.estrellas-contenedor {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    margin-bottom: 12px;
+}
+.estrella {
+    width: 30px; height: 30px;
+    color: #FFB800;
+    filter: drop-shadow(0 0 6px rgba(255,184,0,0.5));
+    animation: brilloEstrella 2.8s ease-in-out infinite;
+    will-change: transform, filter;
+}
+.estrella svg { width: 100%; height: 100%; }
+.estrella-1 { animation-delay: 0s; }
+.estrella-2 { animation-delay: 0.15s; }
+.estrella-3 { animation-delay: 0.3s; }
+.estrella-4 { animation-delay: 0.45s; }
+.estrella-5 { animation-delay: 0.6s; }
+
+@keyframes brilloEstrella {
+    0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 6px rgba(255,184,0,0.5)) brightness(1); opacity: 1; }
+    25% { transform: scale(1.18) rotate(2deg); filter: drop-shadow(0 0 14px rgba(255,184,0,0.9)) brightness(1.3); opacity: 1; }
+    50% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 6px rgba(255,184,0,0.5)) brightness(1); opacity: 0.95; }
+}
+
+/* ========================================================= */
+/* NUEVO: BOTON INSTAGRAM CON NEON SUAVE QUE SE MUEVE */
+/* ========================================================= */
+.boton-instagram-neon {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    border-radius: var(--radio-lg);
+    padding: 2px;
+    overflow: hidden;
+    isolation: isolate;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.boton-instagram-neon:hover { transform: translateY(-2px) scale(1.01); }
+.boton-instagram-neon:active { transform: scale(0.98); }
+
+.neon-borde-animado {
+    position: absolute;
+    inset: -100%;
+    background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 90deg, #2B7FFF 150deg, #00E5FF 180deg, #7C3AED 210deg, #2B7FFF 270deg, transparent 320deg, transparent 360deg);
+    animation: girarNeon 3.5s linear infinite;
+    z-index: 0;
+}
+
+@keyframes girarNeon {
+    to { transform: rotate(360deg); }
+}
+
+.agradecimiento-contenido {
+    position: relative;
+    z-index: 1;
+    background: rgba(18, 26, 43, 0.9);
+    border: 1px solid var(--negro-card-borde);
+    border-radius: calc(var(--radio-lg) - 2px);
+    padding: 18px;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    backdrop-filter: blur(12px);
+}
+
+.boton-instagram-neon .agradecimiento-icono {
+    filter: drop-shadow(0 0 10px rgba(43,127,255,0.6));
+    animation: latidoCorazon 2s ease-in-out infinite;
+}
+
+@keyframes latidoCorazon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+.boton-instagram-neon .agradecimiento-titulo {
+    background: linear-gradient(180deg, white 0%, #C2D1E5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.instagram-hint {
+    margin-top: 6px;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--azul-primario);
+    background: rgba(43,127,255,0.12);
+    border: 1px solid rgba(43,127,255,0.2);
+    padding: 6px 12px; border-radius: 9999px;
+    transition: all 0.2s ease;
+}
+.boton-instagram-neon:hover .instagram-hint {
+    background: rgba(43,127,255,0.2);
+    border-color: rgba(43,127,255,0.35);
+    box-shadow: 0 0 16px rgba(43,127,255,0.3);
+}
