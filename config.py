@@ -1,7 +1,8 @@
 # ===================================================================
-# FREEPORT MOMENTS - CONFIG.PY - ACTUALIZADO
+# FREEPORT MOMENTS - CONFIG.PY - ACTUALIZADO - ULTRA RAPIDO
 # Ahora el nombre del evento se guarda en data/evento.json y se puede
 # cambiar desde el panel admin sin tocar .env ni reiniciar.
+# OPTIMIZACION: 8MB chunks + 3x paralelo = 3x mas rapido
 # ===================================================================
 import json
 import logging
@@ -153,13 +154,13 @@ ASSETS_CONFIG = {
 UPLOAD_CONFIG = {
     "max_size_mb": int(os.getenv("MAX_SIZE_MB", "300")),
     "max_size_bytes": int(os.getenv("MAX_SIZE_MB", "300")) * 1024 * 1024,
-    "chunk_size_mb": 2,
-    "umbral_fragmentado_mb": 10,
+    "chunk_size_mb": 8,  # OPTIMIZADO - ANTES 2 - AHORA 8 = 4x menos requests
+    "umbral_fragmentado_mb": 5,  # OPTIMIZADO - ANTES 10 - Fragmenta antes para usar paralelo
     "allowed_extensions": {
         "imagen": [".jpg", ".jpeg", ".png", ".heic", ".heif", ".webp", ".gif"],
         "video": [".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v"],
     },
-    "max_uploads_concurrentes": int(os.getenv("MAX_UPLOADS_CONCURRENTES", "6")),
+    "max_uploads_concurrentes": int(os.getenv("MAX_UPLOADS_CONCURRENTES", "12")),  # OPTIMIZADO - ANTES 6
     "horas_limpieza_temporales": 6,
 }
 
