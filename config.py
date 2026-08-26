@@ -10,20 +10,20 @@ import os
 import secrets
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
-
+ 
 try:
     from dotenv import load_dotenv
     load_dotenv()
 except ImportError:
     pass
-
+ 
 BASE_DIR = Path(__file__).resolve().parent
 UPLOAD_DIR = BASE_DIR / "static" / "uploads"
 ASSETS_DIR = BASE_DIR / "assets"
 LOGS_DIR = BASE_DIR / "logs"
 DATA_DIR = BASE_DIR / "data"
 EVENTO_CONFIG_FILE = DATA_DIR / "evento.json"
-
+ 
 CARPETAS_REQUERIDAS = [
     UPLOAD_DIR / "pendientes",
     UPLOAD_DIR / "aprobadas",
@@ -36,13 +36,13 @@ CARPETAS_REQUERIDAS = [
     DATA_DIR,
     BASE_DIR / "backups",
 ]
-
+ 
 for carpeta in CARPETAS_REQUERIDAS:
     try:
         carpeta.mkdir(parents=True, exist_ok=True)
     except OSError as e:
         raise SystemExit(f"[FATAL] No se pudo crear la carpeta requerida '{carpeta}': {e}")
-
+ 
 def _configurar_logging() -> logging.Logger:
     logger = logging.getLogger("freeport")
     logger.setLevel(logging.INFO)
@@ -68,9 +68,9 @@ def _configurar_logging() -> logging.Logger:
     except OSError:
         logger.warning("No se pudo crear el archivo de log en disco")
     return logger
-
+ 
 logger = _configurar_logging()
-
+ 
 def _obtener_o_crear_secret_key() -> str:
     env_key = os.getenv("SECRET_KEY", "").strip()
     if env_key:
@@ -91,9 +91,9 @@ def _obtener_o_crear_secret_key() -> str:
     except OSError:
         logger.warning("No se pudo persistir la SECRET_KEY")
     return nueva_key
-
+ 
 SECRET_KEY = _obtener_o_crear_secret_key()
-
+ 
 # ===================================================================
 # EVENTO - AHORA DINAMICO Y PERSISTENTE
 # ===================================================================
@@ -115,7 +115,7 @@ def _cargar_evento_config() -> dict:
         except Exception as e:
             logger.warning(f"No se pudo leer {EVENTO_CONFIG_FILE}: {e}")
     return config_default
-
+ 
 def guardar_evento_config(nueva_data: dict) -> dict:
     """Guarda el config en disco y actualiza variable global."""
     global EVENTO_CONFIG
@@ -129,15 +129,15 @@ def guardar_evento_config(nueva_data: dict) -> dict:
         logger.error(f"No se pudo guardar evento.json: {e}")
         raise
     return actual
-
+ 
 def actualizar_nombre_evento(nombre: str) -> dict:
     nombre = nombre.strip()
     if not (2 <= len(nombre) <= 100):
         raise ValueError("El nombre debe tener entre 2 y 100 caracteres")
     return guardar_evento_config({"nombre": nombre})
-
+ 
 EVENTO_CONFIG = _cargar_evento_config()
-
+ 
 # ===================================================================
 # ASSETS EDITABLES
 # ===================================================================
@@ -150,7 +150,7 @@ ASSETS_CONFIG = {
     "fondo_path": ASSETS_DIR / "background.jpg",
     "google_link": os.getenv("GOOGLE_REVIEW_LINK", "https://maps.app.goo.gl/2t5QF6zabdPMSehR8"),
 }
-
+ 
 UPLOAD_CONFIG = {
     "max_size_mb": int(os.getenv("MAX_SIZE_MB", "300")),
     "max_size_bytes": int(os.getenv("MAX_SIZE_MB", "300")) * 1024 * 1024,
@@ -163,22 +163,22 @@ UPLOAD_CONFIG = {
     "max_uploads_concurrentes": int(os.getenv("MAX_UPLOADS_CONCURRENTES", "20")),  # OPTIMIZADO - antes 12, ahora los bloques escriben en paralelo real
     "horas_limpieza_temporales": 6,
 }
-
+ 
 _usuario_default = "Freeport"
 _password_default = "1979"
-
+ 
 ADMIN_CONFIG = {
     "usuario": os.getenv("ADMIN_USUARIO", _usuario_default),
     "password": os.getenv("ADMIN_PASSWORD", _password_default),
-    "session_expire_hours": int(os.getenv("SESSION_EXPIRE_HOURS", "24")),
+    "session_expire_hours": int(os.getenv("SESSION_EXPIRE_HOURS", "72")),
     "max_intentos_fallidos": int(os.getenv("MAX_INTENTOS_LOGIN", "6")),
     "bloqueo_minutos": int(os.getenv("BLOQUEO_MINUTOS_LOGIN", "10")),
     "cookie_secure": os.getenv("COOKIE_SECURE", "false").strip().lower() == "true",
 }
-
+ 
 if ADMIN_CONFIG["usuario"] == _usuario_default and ADMIN_CONFIG["password"] == _password_default:
     logger.warning("Usando usuario/contraseña por defecto. Define ADMIN_USUARIO y ADMIN_PASSWORD en .env")
-
+ 
 DATABASE_CONFIG = {
     "path": DATA_DIR / "freeport.db",
     "backup_enabled": True,
@@ -186,22 +186,20 @@ DATABASE_CONFIG = {
     "backup_cada_minutos": int(os.getenv("BACKUP_CADA_MINUTOS", "30")),
     "backups_a_conservar": int(os.getenv("BACKUPS_A_CONSERVAR", "10")),
 }
-
+ 
 SERVER_CONFIG = {
     "host": os.getenv("HOST", "0.0.0.0"),
     "port": int(os.getenv("PORT", "8000")),
     "debug": os.getenv("DEBUG", "false").strip().lower() == "true",
     "espacio_total_gb": int(os.getenv("ESPACIO_TOTAL_GB", "50")),
-    "abrir_navegador": os.getenv("ABRIR_NAVEGADOR", "true").strip().lower() == "true",
-    "iniciar_tunel_cloudflare": os.getenv("INICIAR_TUNEL_CLOUDFLARE", "false").strip().lower() == "true",
 }
-
+ 
 RATE_LIMIT_CONFIG = {
     "subida_por_minuto": int(os.getenv("RATE_LIMIT_SUBIDA_MIN", "30")),
     "login_por_minuto": int(os.getenv("RATE_LIMIT_LOGIN_MIN", "10")),
     "ping_por_minuto": int(os.getenv("RATE_LIMIT_PING_MIN", "20")),
 }
-
+ 
 def get_public_config() -> dict:
     # Siempre recargar por si cambió desde admin
     evento_actual = _cargar_evento_config()
@@ -216,3 +214,4 @@ def get_public_config() -> dict:
             + UPLOAD_CONFIG["allowed_extensions"]["video"]
         ),
     }
+ 
