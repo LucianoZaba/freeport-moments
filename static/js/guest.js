@@ -84,8 +84,60 @@ async function fetchConReintentos(url, opciones = {}, maxIntentos = 5, onReinten
 }
 
 // =========================================================
-// CARGAR CONFIGURACION PUBLICA
+// XHR CON REINTENTOS Y PROGRESO REAL DE BYTES
+// (fetch no reporta progreso de subida; XHR sí)
 // =========================================================
+function xhrConReintentos(url, formData, onProgresoBytes, maxIntentos = 5, onReintento = null) {
+    return new Promise((resolve, reject) => {
+        let intento = 0;
+
+        const intentarUnaVez = () => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+
+            if (onProgresoBytes) {
+                xhr.upload.addEventListener('progress', (e) => {
+                    if (e.lengthComputable) onProgresoBytes(e.loaded);
+                });
+            }
+
+            xhr.onload = () => {
+                if (xhr.status === 429 || xhr.status >= 500) {
+                    reintentar();
+                    return;
+                }
+                let datos = null;
+                try { datos = JSON.parse(xhr.responseText); } catch { /* no era JSON */ }
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    resolve(datos);
+                } else {
+                    reject(new Error((datos && datos.detail) || 'Error en subida'));
+                }
+            };
+
+            xhr.onerror = () => reintentar();
+
+            xhr.send(formData);
+        };
+
+        const reintentar = () => {
+            if (intento >= maxIntentos - 1) {
+                reject(new Error('No se pudo conectar con el servidor'));
+                return;
+            }
+            intento++;
+            if (onReintento) onReintento(intento);
+            if (onProgresoBytes) onProgresoBytes(0); // este intento arranca de nuevo
+            esperarConexion()
+                .then(() => esperar(Math.min(1000 * 2 ** intento, 15000) + Math.random() * 400))
+                .then(intentarUnaVez);
+        };
+
+        esperarConexion().then(intentarUnaVez);
+    });
+}
+
+
 async function cargarConfiguracionPublica() {
     try {
         const respuesta = await fetchConReintentos('/api/configuracion/publica', {}, 3);
@@ -161,16 +213,33 @@ function inicializarEventos() {
 // =========================================================
 // PROCESAR ARCHIVOS - COLA SECUENCIAL DE ARCHIVOS
 // (cada archivo sigue siendo secuencial, pero sus bloques van en paralelo)
+// La barra de arriba ahora refleja BYTES reales subidos de todo el lote,
+// no cantidad de archivos, para que un video grande muestre su avance.
 // =========================================================
+let bytesTotalLote = 0;
+let bytesConfirmados = 0;
+let bytesEnVuelo = {};
+
+function actualizarBarraGlobal() {
+    const enVuelo = Object.values(bytesEnVuelo).reduce((a, b) => a + b, 0);
+    const total = Math.min(bytesTotalLote, bytesConfirmados + enVuelo);
+    const pct = bytesTotalLote > 0 ? Math.round((total / bytesTotalLote) * 100) : 0;
+    progresoBarra.style.width = `${pct}%`;
+    progresoTexto.textContent = `${pct}%`;
+}
+
 async function procesarArchivos(archivos) {
     if (archivos.length === 0) return;
 
     mostrarModalProgreso(archivos.length);
 
+    bytesTotalLote = archivos.reduce((acc, a) => acc + a.size, 0);
+    bytesConfirmados = 0;
+    bytesEnVuelo = {};
+
     let completados = 0;
     let fallidos = 0;
     const fallidosDeEstaTanda = [];
-    let huboReintentos = false;
 
     // UNICA OPTIMIZACION: Baja el umbral para que use el sistema rapido antes
     const umbralFragmentado = 5 * 1024 * 1024; // antes 10MB, ahora 5MB
@@ -178,10 +247,9 @@ async function procesarArchivos(archivos) {
     for (let i = 0; i < archivos.length; i++) {
         const archivo = archivos[i];
         try {
-            actualizarProgresoItem(archivo.name, 'subiendo');
+            actualizarProgresoItem(archivo.name, 'subiendo', `${archivo.name} (0%)`);
 
             const marcarReintento = () => {
-                huboReintentos = true;
                 progresoNota.hidden = false;
                 actualizarProgresoItem(archivo.name, 'reintentando');
             };
@@ -192,17 +260,19 @@ async function procesarArchivos(archivos) {
                 await subirArchivoSimple(archivo, marcarReintento);
             }
 
+            bytesConfirmados += archivo.size;
+            delete bytesEnVuelo[archivo.name];
             completados++;
             actualizarProgresoItem(archivo.name, 'ok');
         } catch (error) {
+            delete bytesEnVuelo[archivo.name];
+            bytesConfirmados += archivo.size; // se cuenta como "resuelto" para que la barra no se trabe
             fallidos++;
             fallidosDeEstaTanda.push(archivo);
             actualizarProgresoItem(archivo.name, 'error');
         }
 
-        const porcentaje = ((completados + fallidos) / archivos.length) * 100;
-        progresoBarra.style.width = `${porcentaje}%`;
-        progresoTexto.textContent = `${completados + fallidos} de ${archivos.length} archivos`;
+        actualizarBarraGlobal();
     }
 
     setTimeout(() => {
@@ -227,36 +297,42 @@ async function subirArchivoSimple(archivo, onReintento) {
     const formData = new FormData();
     formData.append('archivo', archivo);
 
-    const respuesta = await fetchConReintentos('/api/subida', { method: 'POST', body: formData }, 5, onReintento);
-
-    if (!respuesta.ok) {
-        let detalle = 'Error en subida';
-        try {
-            const error = await respuesta.json();
-            detalle = error.detail || detalle;
-        } catch { /* respuesta no era JSON */ }
-        throw new Error(detalle);
-    }
-    return respuesta.json();
+    await xhrConReintentos('/api/subida', formData, (loaded) => {
+        bytesEnVuelo[archivo.name] = loaded;
+        const pct = Math.round((loaded / archivo.size) * 100);
+        actualizarProgresoItem(archivo.name, 'subiendo', `${archivo.name} (${pct}%)`);
+        actualizarBarraGlobal();
+    }, 5, onReintento);
 }
 
 // =========================================================
 // SUBIDA POR BLOQUES - ULTRA RAPIDA
-// 8MB por bloque + 3 bloques en paralelo
+// 8MB por bloque + 4 bloques en paralelo, con progreso real de bytes
 // =========================================================
 async function subirPorBloques(archivo, onReintento) {
-    const tamanoBloque = 8 * 1024 * 1024; // 8MB - antes 2MB
+    const tamanoBloque = 8 * 1024 * 1024; // 8MB
     const totalBloques = Math.ceil(archivo.size / tamanoBloque);
     const idSubida = `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
     const CONCURRENCIA = 4; // 4 chunks a la vez (el servidor ya los escribe en paralelo real)
 
-    let bloquesCompletados = 0;
+    let bytesConfirmadosArchivo = 0;
 
-    // Funcion interna que sube 1 bloque con reintentos
+    function actualizarItemArchivo() {
+        const enVueloArchivo = Object.entries(bytesEnVuelo)
+            .filter(([clave]) => clave.startsWith(`${archivo.name}#`))
+            .reduce((a, [, v]) => a + v, 0);
+        const totalArchivo = Math.min(archivo.size, bytesConfirmadosArchivo + enVueloArchivo);
+        const pct = Math.round((totalArchivo / archivo.size) * 100);
+        actualizarProgresoItem(archivo.name, 'subiendo', `${archivo.name} (${pct}%)`);
+        bytesEnVuelo[archivo.name] = totalArchivo; // para la barra global
+        actualizarBarraGlobal();
+    }
+
     async function subirUnBloque(bloque) {
         const inicio = bloque * tamanoBloque;
         const fin = Math.min(inicio + tamanoBloque, archivo.size);
         const pedazo = archivo.slice(inicio, fin);
+        const claveBloque = `${archivo.name}#${bloque}`;
 
         const formData = new FormData();
         formData.append('bloque', pedazo);
@@ -266,22 +342,14 @@ async function subirPorBloques(archivo, onReintento) {
         formData.append('nombre_original', archivo.name);
         formData.append('tipo_archivo', archivo.type);
 
-        const respuesta = await fetchConReintentos(
-            '/api/subida/fragmentada', { method: 'POST', body: formData }, 5, onReintento
-        );
+        await xhrConReintentos('/api/subida/fragmentada', formData, (loaded) => {
+            bytesEnVuelo[claveBloque] = loaded;
+            actualizarItemArchivo();
+        }, 5, onReintento);
 
-        if (!respuesta.ok) {
-            let detalle = `Error en bloque ${bloque + 1}/${totalBloques}`;
-            try {
-                const error = await respuesta.json();
-                detalle = error.detail || detalle;
-            } catch { /* no era JSON */ }
-            throw new Error(detalle);
-        }
-
-        bloquesCompletados++;
-        const pct = Math.round((bloquesCompletados / totalBloques) * 100);
-        actualizarProgresoItem(archivo.name, 'subiendo', `${archivo.name} (${pct}%)`);
+        delete bytesEnVuelo[claveBloque];
+        bytesConfirmadosArchivo += (fin - inicio);
+        actualizarItemArchivo();
     }
 
     // Lanza en lotes paralelos
@@ -290,7 +358,7 @@ async function subirPorBloques(archivo, onReintento) {
         for (let j = 0; j < CONCURRENCIA && i + j < totalBloques; j++) {
             lote.push(subirUnBloque(i + j));
         }
-        await Promise.all(lote); // espera que terminen las 3 antes de seguir
+        await Promise.all(lote); // espera que terminen antes de seguir con el siguiente lote
     }
 }
 
@@ -299,7 +367,7 @@ async function subirPorBloques(archivo, onReintento) {
 // =========================================================
 function mostrarModalProgreso(total) {
     progresoBarra.style.width = '0%';
-    progresoTexto.textContent = `0 de ${total} archivos`;
+    progresoTexto.textContent = '0%';
     progresoLista.innerHTML = '';
     progresoNota.hidden = true;
     modalProgreso.hidden = false;
