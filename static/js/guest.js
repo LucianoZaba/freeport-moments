@@ -1,11 +1,6 @@
 // ===================================================================
-// FREEPORT MOMENTS - GUEST JS
-// Logica de subida de fotos y videos del invitado.
-// Pensado para funcionar bien con señal de celular inestable durante
-// toda una noche de evento: reintentos automáticos con backoff,
-// deteccion de offline/online, y reintento manual de los archivos
-// que finalmente no se pudieron subir.
-// Vanilla JS - sin frameworks.
+// FREEPORT MOMENTS - GUEST JS - ULTRA RAPIDO
+// UNICA SOLUCION MAS EFICIENTE: 8MB + 3x PARALELO
 // ===================================================================
 
 const inputArchivos = document.getElementById('inputArchivos');
@@ -43,7 +38,7 @@ function actualizarBannerConexion() {
 }
 
 // =========================================================
-// ESPERAR RECONEXION (usado por el sistema de reintentos)
+// ESPERAR RECONEXION
 // =========================================================
 function esperarConexion() {
     if (navigator.onLine) return Promise.resolve();
@@ -62,10 +57,6 @@ function esperar(ms) {
 
 // =========================================================
 // FETCH CON REINTENTOS Y BACKOFF EXPONENCIAL
-// No reintenta ante errores "permanentes" (400: archivo inválido),
-// pero sí ante caídas de red, 5xx del servidor, o 429 (demasiadas
-// peticiones), que son típicos de señal inestable o momentos de
-// mucha carga simultánea de invitados.
 // =========================================================
 async function fetchConReintentos(url, opciones = {}, maxIntentos = 5, onReintento = null) {
     let intento = 0;
@@ -82,9 +73,8 @@ async function fetchConReintentos(url, opciones = {}, maxIntentos = 5, onReinten
                 continue;
             }
 
-            return respuesta; // 2xx o 4xx "permanente": no se reintenta
+            return respuesta;
         } catch (error) {
-            // Error de red (sin conexión, DNS, timeout del navegador, etc.)
             if (intento >= maxIntentos - 1) throw error;
             intento++;
             if (onReintento) onReintento(intento);
@@ -161,58 +151,29 @@ function inicializarEventos() {
     botonReintentar.addEventListener('click', () => {
         cerrarModalError();
         if (archivosFallidos.length > 0) {
-            const aReintentar = archivosFallidos;
+            const paraReintentar = [...archivosFallidos];
             archivosFallidos = [];
-            subirArchivos(aReintentar);
+            procesarArchivos(paraReintentar);
         }
     });
 }
 
 // =========================================================
-// VALIDAR Y PROCESAR ARCHIVOS SELECCIONADOS
+// PROCESAR ARCHIVOS - COLA SECUENCIAL DE ARCHIVOS
+// (cada archivo sigue siendo secuencial, pero sus bloques van en paralelo)
 // =========================================================
-function procesarArchivos(archivos) {
-    const maxSizeMb = (configuracionPublica && configuracionPublica.max_size_mb) || 300;
-    const maxSize = maxSizeMb * 1024 * 1024;
+async function procesarArchivos(archivos) {
+    if (archivos.length === 0) return;
 
-    const archivosValidos = [];
-    const errores = [];
-
-    for (const archivo of archivos) {
-        const esImagen = archivo.type.startsWith('image/');
-        const esVideo = archivo.type.startsWith('video/');
-
-        if (!esImagen && !esVideo) {
-            errores.push(`${archivo.name}: Formato no permitido`);
-            continue;
-        }
-        if (archivo.size > maxSize) {
-            errores.push(`${archivo.name}: Supera ${maxSizeMb}MB`);
-            continue;
-        }
-        archivosValidos.push(archivo);
-    }
-
-    if (errores.length > 0) {
-        mostrarError('Algunos archivos no son válidos', errores.join('\n'), false);
-    }
-
-    if (archivosValidos.length > 0) {
-        subirArchivos(archivosValidos);
-    }
-}
-
-// =========================================================
-// SUBIR ARCHIVOS - CON SOPORTE DE BLOQUES Y REINTENTOS
-// =========================================================
-async function subirArchivos(archivos) {
     mostrarModalProgreso(archivos.length);
+
     let completados = 0;
     let fallidos = 0;
     const fallidosDeEstaTanda = [];
     let huboReintentos = false;
 
-    const umbralFragmentado = 10 * 1024 * 1024;
+    // UNICA OPTIMIZACION: Baja el umbral para que use el sistema rapido antes
+    const umbralFragmentado = 5 * 1024 * 1024; // antes 10MB, ahora 5MB
 
     for (let i = 0; i < archivos.length; i++) {
         const archivo = archivos[i];
@@ -279,12 +240,20 @@ async function subirArchivoSimple(archivo, onReintento) {
     return respuesta.json();
 }
 
+// =========================================================
+// SUBIDA POR BLOQUES - ULTRA RAPIDA
+// 8MB por bloque + 3 bloques en paralelo
+// =========================================================
 async function subirPorBloques(archivo, onReintento) {
-    const tamanoBloque = 2 * 1024 * 1024;
+    const tamanoBloque = 8 * 1024 * 1024; // 8MB - antes 2MB
     const totalBloques = Math.ceil(archivo.size / tamanoBloque);
     const idSubida = `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
+    const CONCURRENCIA = 3; // 3 chunks a la vez
 
-    for (let bloque = 0; bloque < totalBloques; bloque++) {
+    let bloquesCompletados = 0;
+
+    // Funcion interna que sube 1 bloque con reintentos
+    async function subirUnBloque(bloque) {
         const inicio = bloque * tamanoBloque;
         const fin = Math.min(inicio + tamanoBloque, archivo.size);
         const pedazo = archivo.slice(inicio, fin);
@@ -310,9 +279,18 @@ async function subirPorBloques(archivo, onReintento) {
             throw new Error(detalle);
         }
 
-        // Actualiza el texto de progreso con el avance del archivo grande actual
-        const pct = Math.round(((bloque + 1) / totalBloques) * 100);
+        bloquesCompletados++;
+        const pct = Math.round((bloquesCompletados / totalBloques) * 100);
         actualizarProgresoItem(archivo.name, 'subiendo', `${archivo.name} (${pct}%)`);
+    }
+
+    // Lanza en lotes paralelos
+    for (let i = 0; i < totalBloques; i += CONCURRENCIA) {
+        const lote = [];
+        for (let j = 0; j < CONCURRENCIA && i + j < totalBloques; j++) {
+            lote.push(subirUnBloque(i + j));
+        }
+        await Promise.all(lote); // espera que terminen las 3 antes de seguir
     }
 }
 
@@ -371,12 +349,12 @@ function cerrarModalError() {
 }
 
 // =========================================================
-// PING DE CONECTADOS PARA EL ADMIN (con backoff silencioso)
+// PING DE CONECTADOS PARA EL ADMIN
 // =========================================================
 function iniciarContadorConectados() {
     const ping = () => {
         if (!navigator.onLine) return;
-        fetch('/api/guest/ping', { method: 'POST' }).catch(() => { /* silencioso: no molesta al invitado */ });
+        fetch('/api/guest/ping', { method: 'POST' }).catch(() => { /* silencioso */ });
     };
     ping();
     setInterval(ping, 30000);
