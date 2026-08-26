@@ -160,7 +160,7 @@ UPLOAD_CONFIG = {
         "imagen": [".jpg", ".jpeg", ".png", ".heic", ".heif", ".webp", ".gif"],
         "video": [".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v"],
     },
-    "max_uploads_concurrentes": int(os.getenv("MAX_UPLOADS_CONCURRENTES", "12")),  # OPTIMIZADO - ANTES 6
+    "max_uploads_concurrentes": int(os.getenv("MAX_UPLOADS_CONCURRENTES", "20")),  # OPTIMIZADO - antes 12, ahora los bloques escriben en paralelo real
     "horas_limpieza_temporales": 6,
 }
 
