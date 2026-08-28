@@ -407,7 +407,10 @@ async def api_subida(
         tipo = mimetypes.guess_type(nombre_guardado)[0] or "image/jpeg"
  
     ruta_destino = UPLOAD_DIR / "pendientes" / nombre_guardado
-    max_bytes = UPLOAD_CONFIG["max_size_bytes"]
+    max_bytes = (
+        UPLOAD_CONFIG["max_video_size_bytes"] if es_video
+        else UPLOAD_CONFIG["max_size_bytes"]
+    )
  
     async with _semaforo_uploads:
         try:
@@ -417,7 +420,11 @@ async def api_subida(
         except ValueError:
             raise HTTPException(
                 status_code=400,
-                detail=f"El archivo supera el máximo de {UPLOAD_CONFIG['max_size_mb']}MB",
+                detail=(
+                    f"El video supera el máximo de {UPLOAD_CONFIG['max_video_size_mb']}MB"
+                    if es_video else
+                    f"El archivo supera el máximo de {UPLOAD_CONFIG['max_size_mb']}MB"
+                ),
             )
         except OSError as e:
             logger.error(f"Error de disco al guardar {nombre_guardado}: {e}")
@@ -468,7 +475,11 @@ async def api_subida_fragmentada(
         raise HTTPException(status_code=400, detail=f"Extensión '{ext}' no permitida")
  
     carpeta_partes = UPLOAD_DIR / "temp" / id_subida
-    max_bytes = UPLOAD_CONFIG["max_size_bytes"]
+    es_video = ext in UPLOAD_CONFIG["allowed_extensions"]["video"]
+    max_bytes = (
+        UPLOAD_CONFIG["max_video_size_bytes"] if es_video
+        else UPLOAD_CONFIG["max_size_bytes"]
+    )
  
     # Cada bloque se guarda en su propio archivo, SIN lock: así los bloques
     # que llegan en paralelo se escriben en paralelo de verdad, sin importar
@@ -490,7 +501,11 @@ async def api_subida_fragmentada(
                 await asyncio.to_thread(shutil.rmtree, carpeta_partes, True)
                 raise HTTPException(
                     status_code=400,
-                    detail=f"El archivo supera el máximo de {UPLOAD_CONFIG['max_size_mb']}MB",
+                    detail=(
+                        f"El video supera el máximo de {UPLOAD_CONFIG['max_video_size_mb']}MB"
+                        if es_video else
+                        f"El archivo supera el máximo de {UPLOAD_CONFIG['max_size_mb']}MB"
+                    ),
                 )
         except OSError as e:
             logger.error(f"Error de disco en bloque {indice_bloque} de {id_subida}: {e}")
@@ -505,7 +520,6 @@ async def api_subida_fragmentada(
         if len(partes) < total_bloques:
             return {"ok": True, "completado": False}
  
-        es_video = ext in UPLOAD_CONFIG["allowed_extensions"]["video"]
         if es_video:
             numero = await asyncio.to_thread(db.siguiente_numero_video)
             nombre_guardado = f"video_{numero}{ext}"
