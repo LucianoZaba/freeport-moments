@@ -153,7 +153,9 @@ ASSETS_CONFIG = {
  
 UPLOAD_CONFIG = {
     "max_size_mb": int(os.getenv("MAX_SIZE_MB", "300")),
+    "max_video_size_mb": int(os.getenv("MAX_VIDEO_SIZE_MB", "80")),
     "max_size_bytes": int(os.getenv("MAX_SIZE_MB", "300")) * 1024 * 1024,
+    "max_video_size_bytes": int(os.getenv("MAX_VIDEO_SIZE_MB", "80")) * 1024 * 1024,
     "chunk_size_mb": 8,  # OPTIMIZADO - ANTES 2 - AHORA 8 = 4x menos requests
     "umbral_fragmentado_mb": 5,  # OPTIMIZADO - ANTES 10 - Fragmenta antes para usar paralelo
     "allowed_extensions": {
@@ -209,6 +211,7 @@ def get_public_config() -> dict:
         "logo_url": ASSETS_CONFIG["logo_url"],
         "google_link": ASSETS_CONFIG["google_link"],
         "max_size_mb": UPLOAD_CONFIG["max_size_mb"],
+        "max_video_size_mb": UPLOAD_CONFIG["max_video_size_mb"],
         "extensiones_permitidas": (
             UPLOAD_CONFIG["allowed_extensions"]["imagen"]
             + UPLOAD_CONFIG["allowed_extensions"]["video"]
